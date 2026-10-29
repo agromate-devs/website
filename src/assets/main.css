@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+
 @plugin '@tailwindcss/typography';
 
 @theme {
@@ -49,10 +50,6 @@
     @apply prose prose-lg max-w-none prose-headings:font-display prose-headings:font-semibold prose-headings:text-leaf-950 prose-headings:scroll-mt-24 prose-a:text-leaf-700 prose-a:decoration-leaf-300 prose-a:underline-offset-4 hover:prose-a:decoration-leaf-600 prose-strong:text-leaf-950 prose-code:rounded prose-code:bg-leaf-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:text-leaf-900 prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:bg-leaf-950 prose-pre:text-leaf-50 prose-th:text-leaf-900 prose-img:rounded-xl;
   }
 
-  .doc-content pre code {
-    @apply bg-transparent p-0 text-inherit;
-  }
-
   .doc-content .heading-anchor {
     @apply text-inherit no-underline;
   }
@@ -70,36 +67,78 @@
     @apply my-0 text-base;
   }
 
-  .doc-content .callout {
-    @apply not-italic rounded-xl border-l-4 px-5 py-1 font-normal;
+  /* GitHub-style alerts rendered by marked-alert */
+  .doc-content .markdown-alert {
+    @apply my-8 rounded-xl border-l-4 px-5 py-4 shadow-sm;
   }
 
-  .doc-content .callout p::before,
-  .doc-content .callout p::after {
-    content: none;
+  .doc-content .markdown-alert > :first-child {
+    @apply mt-0;
   }
 
-  .doc-content .callout-title {
-    @apply mb-1 block text-sm font-semibold tracking-wide uppercase;
+  .doc-content .markdown-alert > :last-child {
+    @apply mb-0;
   }
 
-  .doc-content .callout-note {
+  .doc-content .markdown-alert > p {
+    @apply my-2 text-base leading-relaxed;
+  }
+
+  .doc-content .markdown-alert-title {
+    @apply mb-2 flex items-center gap-2 text-sm font-semibold tracking-wide uppercase;
+  }
+
+  .doc-content .markdown-alert-title svg {
+    @apply m-0 size-4 shrink-0 fill-current;
+  }
+
+  .doc-content .markdown-alert-note {
     @apply border-water-400 bg-sky-50 text-sky-950;
   }
 
-  .doc-content .callout-tip {
+  .doc-content .markdown-alert-note .markdown-alert-title {
+    @apply text-sky-700;
+  }
+
+  .doc-content .markdown-alert-tip {
     @apply border-leaf-500 bg-leaf-50 text-leaf-950;
   }
 
-  .doc-content .callout-important {
+  .doc-content .markdown-alert-tip .markdown-alert-title {
+    @apply text-leaf-700;
+  }
+
+  .doc-content .markdown-alert-important {
     @apply border-violet-400 bg-violet-50 text-violet-950;
   }
 
-  .doc-content .callout-warning {
+  .doc-content .markdown-alert-important .markdown-alert-title {
+    @apply text-violet-700;
+  }
+
+  .doc-content .markdown-alert-warning {
     @apply border-sun-400 bg-amber-50 text-amber-950;
   }
 
-  .doc-content .callout-caution {
+  .doc-content .markdown-alert-warning .markdown-alert-title {
+    @apply text-amber-700;
+  }
+
+  .doc-content .markdown-alert-caution {
     @apply border-red-400 bg-red-50 text-red-950;
+  }
+
+  .doc-content .markdown-alert-caution .markdown-alert-title {
+    @apply text-red-700;
+  }
+
+  /* Keep inline content readable on the tinted background */
+  .doc-content .markdown-alert strong,
+  .doc-content .markdown-alert a {
+    @apply text-inherit;
+  }
+
+  .doc-content .markdown-alert code {
+    @apply bg-white/70;
   }
 }

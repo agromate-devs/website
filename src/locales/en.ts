@@ -109,6 +109,7 @@ export default {
     navLabel: 'Documentation',
     draft: 'Draft',
     draftBadge: 'Draft — work in progress',
+    draftWarning: 'This page is a draft: its content may be incomplete or inaccurate.',
     untranslated: 'This page is not available in English yet.',
     adjacent: 'Adjacent pages',
     previous: 'Previous',
