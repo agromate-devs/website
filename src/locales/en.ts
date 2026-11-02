@@ -18,6 +18,7 @@ export default {
     architecture: 'Architecture',
     docs: 'Documentation',
     openMenu: 'Open menu',
+    closeMenu: 'Close menu',
   },
   hero: {
     title: 'The smart greenhouse that takes care {highlight}.',

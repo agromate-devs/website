@@ -64,7 +64,7 @@
   }
 
   .doc-content table {
-    @apply my-0 text-base;
+    @apply my-0 text-base max-lg:block max-lg:overflow-x-auto;
   }
 
   /* GitHub-style alerts rendered by marked-alert */

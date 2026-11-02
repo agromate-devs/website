@@ -16,6 +16,7 @@ export default {
     architecture: 'Architettura',
     docs: 'Documentazione',
     openMenu: 'Apri menu',
+    closeMenu: 'Chiudi menu',
   },
   hero: {
     title: 'La serra smart che si prende cura {highlight}.',

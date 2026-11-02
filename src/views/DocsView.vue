@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { Marked } from 'marked';
 import markedAlert from 'marked-alert';
@@ -7,12 +7,13 @@ import { markedHighlight } from 'marked-highlight';
 import i18n from '../i18n';
 import hljs from 'highlight.js';
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/solid';
+import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 
 const marked = new Marked(
   markedHighlight({
     emptyLangClass: 'hljs',
     langPrefix: 'hljs language-',
-    highlight(code, lang, info) {
+    highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : 'plaintext';
       return hljs.highlight(code, { language }).value;
     },
@@ -104,53 +105,117 @@ function isPageDraft(article: string): boolean {
 
   return page.frontmatter.draft;
 }
+
+// Below the lg breakpoint the sidebar is a drawer opened from the toolbar
+const nav_open = ref(false);
+const desktop_query = window.matchMedia('(min-width: 64rem)');
+
+const current_title = computed(
+  () => pages.value.find((p) => p.article === current_article.value)?.frontmatter.title,
+);
+
+function closeNav() {
+  nav_open.value = false;
+}
+
+onMounted(() => {
+  desktop_query.addEventListener('change', closeNav); // The drawer doesn't exist on desktop: release the scroll lock
+});
+
+onBeforeUnmount(() => {
+  desktop_query.removeEventListener('change', closeNav);
+});
 </script>
 
 <template>
-  <div class="mx-auto flex max-w-7xl gap-10 px-4 py-10 sm:px-6 lg:px-8">
-    <aside class="w-64 shrink-0">
-      <nav class="sticky top-24 space-y-1">
-        <details v-for="section in sections" :key="section" class="group" open>
-          <summary
-            class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 font-semibold text-leaf-950 hover:bg-leaf-100"
-          >
-            {{ section }}
-            <span class="text-leaf-900/50 transition-transform group-open:rotate-90">›</span>
-          </summary>
-          <ul class="mt-1 ml-3 space-y-1 border-l border-leaf-200 pl-3">
-            <li
-              v-for="page in pages.filter((p) => p.frontmatter.section === section)"
-              :key="page.article"
-            >
-              <RouterLink
-                :to="{ query: { article: page.article } }"
-                class="block rounded-md px-2 py-1 text-sm hover:bg-leaf-50 hover:text-leaf-950"
-                :class="
-                  page.article === current_article
-                    ? 'bg-leaf-100 font-medium text-leaf-950'
-                    : 'text-leaf-900/70'
-                "
-              >
-                {{ page.frontmatter.title }}
-              </RouterLink>
-            </li>
-          </ul>
-        </details>
-      </nav>
-    </aside>
-    <div class="min-w-0 flex-1">
-      <div
-        v-if="isPageDraft(<string>current_article)"
-        role="alert"
-        class="mb-6 flex items-start gap-3 rounded-lg border border-yellow-300 bg-yellow-50 px-4 py-3 text-yellow-900"
+  <div>
+    <div
+      class="sticky top-16 z-30 border-b border-leaf-900/10 bg-soil-50/85 px-4 py-1.5 backdrop-blur-md sm:px-6 lg:hidden"
+    >
+      <button
+        ref="nav_toggle"
+        type="button"
+        class="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm font-medium text-leaf-900 hover:bg-leaf-100"
+        :aria-expanded="nav_open"
+        aria-controls="docs-nav"
+        :aria-label="$t('docs.index')"
+        @click="nav_open = true"
       >
-        <ExclamationTriangleIcon class="size-6" />
-        <div>
-          <p class="font-semibold">{{ $t('docs.draftBadge') }}</p>
-          <p class="text-sm">{{ $t('docs.draftWarning') }}</p>
+        <Bars3Icon class="size-5 shrink-0" />
+        <span class="truncate">{{ current_title ?? $t('docs.navLabel') }}</span>
+      </button>
+    </div>
+
+    <div class="fixed inset-0 z-40 bg-leaf-950/40 lg:hidden" v-if="nav_open" @click="closeNav" />
+
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:flex lg:gap-10 lg:px-8 lg:py-10">
+      <aside
+        id="docs-nav"
+        class="w-64 shrink-0 max-lg:fixed max-lg:inset-y-0 max-lg:left-0 max-lg:z-50 max-lg:w-72 max-lg:max-w-[85vw] max-lg:overflow-y-auto max-lg:overscroll-contain max-lg:bg-soil-50 max-lg:p-4 max-lg:shadow-xl"
+        :class="
+          nav_open
+            ? 'max-lg:[transition:translate_200ms]'
+            : 'max-lg:invisible max-lg:-translate-x-full max-lg:[transition:translate_200ms,visibility_0s_200ms]'
+        "
+      >
+        <div class="mb-2 flex items-center justify-between lg:hidden">
+          <span class="px-3 font-display font-semibold text-leaf-950">{{
+            $t('docs.navLabel')
+          }}</span>
+          <button
+            ref="nav_close"
+            type="button"
+            class="rounded-lg p-2 text-leaf-900 hover:bg-leaf-100"
+            :aria-label="$t('nav.closeMenu')"
+            @click="closeNav"
+          >
+            <XMarkIcon class="size-6" />
+          </button>
         </div>
+        <nav class="space-y-1 lg:sticky lg:top-24" :aria-label="$t('docs.index')">
+          <details v-for="section in sections" :key="section" class="group" open>
+            <summary
+              class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 font-semibold text-leaf-950 hover:bg-leaf-100"
+            >
+              {{ section }}
+              <span class="text-leaf-900/50 transition-transform group-open:rotate-90">›</span>
+            </summary>
+            <ul class="mt-1 ml-3 space-y-1 border-l border-leaf-200 pl-3">
+              <li
+                v-for="page in pages.filter((p) => p.frontmatter.section === section)"
+                :key="page.article"
+              >
+                <RouterLink
+                  :to="{ query: { article: page.article } }"
+                  class="block rounded-md px-2 py-1 text-sm hover:bg-leaf-50 hover:text-leaf-950"
+                  :class="
+                    page.article === current_article
+                      ? 'bg-leaf-100 font-medium text-leaf-950'
+                      : 'text-leaf-900/70'
+                  "
+                  @click="closeNav"
+                >
+                  {{ page.frontmatter.title }}
+                </RouterLink>
+              </li>
+            </ul>
+          </details>
+        </nav>
+      </aside>
+      <div class="lg:min-w-0 lg:flex-1">
+        <div
+          v-if="isPageDraft(<string>current_article)"
+          role="alert"
+          class="mb-6 flex items-start gap-3 rounded-lg border border-yellow-300 bg-yellow-50 px-4 py-3 text-yellow-900"
+        >
+          <ExclamationTriangleIcon class="size-6" />
+          <div>
+            <p class="font-semibold">{{ $t('docs.draftBadge') }}</p>
+            <p class="text-sm">{{ $t('docs.draftWarning') }}</p>
+          </div>
+        </div>
+        <article class="doc-content wrap-break-word" v-html="article_html" />
       </div>
-      <article class="doc-content wrap-break-word" v-html="article_html" />
     </div>
   </div>
 </template>
