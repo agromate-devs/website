@@ -21,7 +21,8 @@ is built for the **ESP32‑C5** with the default configuration. Build it yoursel
 
 ## Building from source
 
-You need [ESP‑IDF](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html)
+You need <a href="https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html" target="_blank">
+ESP‑IDF</a>
 installed (currently v6.0.1 is officially supported).
 
 1. Clone the firmware:

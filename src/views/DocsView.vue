@@ -20,7 +20,7 @@ const marked = new Marked(
 );
 marked.use(markedAlert());
 
-interface DocFrontmatter extends Module {
+interface DocFrontmatter {
   title: string;
   section: string;
   section_order: number;
@@ -63,13 +63,16 @@ const current_locale = i18n.global.locale;
 // ?article=xxx is the file name without language and extension, the introduction by default
 const current_article = computed(() => route.query.article || 'index');
 const article_html = computed(() => {
-  const find_article = (locale) =>
+  const find_article = (locale: string) =>
     docs.find((doc) => doc.name.split('.')[0] === current_article.value && doc.locale === locale);
   // Render the markdown of the selected article(improve first contentful paint compared to rendering all the markdown at startup)
   let doc = find_article(current_locale.value);
 
   if (!doc) doc = find_article('en');
-  return marked.parse(doc.content.replace(/^---[\s\S]*?---\s*/, '')); // Remove frontmatter since marked doesn't parse it
+  if (!doc) return;
+  const html = marked.parse(doc.content.replace(/^---[\s\S]*?---\s*/, ''), { async: false }); // Remove frontmatter since marked doesn't parse it
+  // Docs use root-relative links and images, which Vite can't rewrite in rendered markdown
+  return html.replace(/\b(src|href)="\/(?!\/)/g, `$1="${import.meta.env.BASE_URL}`);
 });
 
 // Parse the frontmatter for every single page
