@@ -135,7 +135,7 @@ function isPageDraft(article: string): boolean {
         </details>
       </nav>
     </aside>
-    <div>
+    <div class="min-w-0 flex-1">
       <div
         v-if="isPageDraft(<string>current_article)"
         role="alert"
@@ -147,7 +147,7 @@ function isPageDraft(article: string): boolean {
           <p class="text-sm">{{ $t('docs.draftWarning') }}</p>
         </div>
       </div>
-      <article class="doc-content min-w-0 flex-1" v-html="article_html" />
+      <article class="doc-content wrap-break-word" v-html="article_html" />
     </div>
   </div>
 </template>
