@@ -184,3 +184,12 @@ Tap **Add plant to database** (or **Update plant to database** when editing) to 
 changes.
 
 <!-- SCREENSHOT: /docs-assets/app/plant-editor.png — plant editor -->
+
+## Notifications
+
+The app can notify you when the water tank of an Agrosmart is running low or its temperature goes out of the
+**Temperature Range** set in the plant care settings. After the first login it asks for the permission to show
+notifications, and when you log out from the **Profile** tab that phone stops receiving your alerts.
+
+Notifications are sent by the server through Firebase Cloud Messaging and need some configuration on both sides: see
+[Push notifications](/docs?article=push_notifications).
