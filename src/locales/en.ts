@@ -119,6 +119,9 @@ export default {
     notFoundTitle: 'Page not written yet',
     notFoundText: 'There is no documentation page for {path}.',
     backToIndex: 'Back to the index',
+    copyCode: 'Copy',
+    copiedCode: 'Copied!',
+    copyCodeLabel: 'Copy code to clipboard',
     callouts: {
       NOTE: 'Note',
       TIP: 'Tip',

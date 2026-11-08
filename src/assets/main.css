@@ -141,4 +141,18 @@
   .doc-content .markdown-alert code {
     @apply bg-white/70;
   }
+
+  /* Code blocks with copy button */
+  .doc-content .code-block {
+    @apply relative;
+  }
+
+  .doc-content .copy-code {
+    @apply absolute top-6 right-8 cursor-pointer rounded-md border border-leaf-50/15 bg-leaf-50/10 px-2.5 py-1 font-sans text-xs font-medium text-leaf-50/80 opacity-0 transition hover:bg-leaf-50/20 hover:text-leaf-50 focus-visible:opacity-100 max-lg:opacity-100;
+  }
+
+  .doc-content .code-block:hover .copy-code,
+  .doc-content .copy-code[data-copied] {
+    @apply opacity-100;
+  }
 }

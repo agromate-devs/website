@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import { Marked } from 'marked';
 import markedAlert from 'marked-alert';
 import { markedHighlight } from 'marked-highlight';
+import { useI18n } from 'vue-i18n';
 import i18n from '../i18n';
 import hljs from 'highlight.js';
 import { ExclamationTriangleIcon } from '@heroicons/vue/24/solid';
@@ -58,6 +59,7 @@ Object.entries(componentsFrontmatter).forEach(([path, module]) => {
 });
 
 const route = useRoute();
+const { t } = useI18n();
 
 const current_locale = i18n.global.locale;
 
@@ -72,9 +74,41 @@ const article_html = computed(() => {
   if (!doc) doc = find_article('en');
   if (!doc) return;
   const html = marked.parse(doc.content.replace(/^---[\s\S]*?---\s*/, ''), { async: false }); // Remove frontmatter since marked doesn't parse it
-  // Docs use root-relative links and images, which Vite can't rewrite in rendered markdown
-  return html.replace(/\b(src|href)="\/(?!\/)/g, `$1="${import.meta.env.BASE_URL}`);
+  // Wrap every code block with a copy button (handled by onArticleClick)
+  const copy_button = `<button type="button" class="copy-code" aria-label="${t('docs.copyCodeLabel')}">${t('docs.copyCode')}</button>`;
+  return (
+    html
+      .replace(/<pre>/g, `<div class="code-block">${copy_button}<pre>`)
+      .replace(/<\/pre>/g, '</pre></div>')
+      // Docs use root-relative links and images, which Vite can't rewrite in rendered markdown
+      .replace(/\b(src|href)="\/(?!\/)/g, `$1="${import.meta.env.BASE_URL}`)
+  );
 });
+
+const copy_timers = new WeakMap<HTMLElement, number>();
+
+async function onArticleClick(event: MouseEvent) {
+  const button = (event.target as HTMLElement).closest<HTMLButtonElement>('.copy-code');
+  const code = button?.parentElement?.querySelector('pre code');
+  if (!button || !code) return;
+
+  try {
+    await navigator.clipboard.writeText(code.textContent ?? '');
+  } catch {
+    return; // Clipboard unavailable (e.g. insecure context): leave the button unchanged
+  }
+
+  button.textContent = t('docs.copiedCode');
+  button.dataset.copied = '';
+  window.clearTimeout(copy_timers.get(button));
+  copy_timers.set(
+    button,
+    window.setTimeout(() => {
+      button.textContent = t('docs.copyCode');
+      delete button.dataset.copied;
+    }, 2000),
+  );
+}
 
 // Parse the frontmatter for every single page
 const pages = computed(() => {
@@ -214,7 +248,11 @@ onBeforeUnmount(() => {
             <p class="text-sm">{{ $t('docs.draftWarning') }}</p>
           </div>
         </div>
-        <article class="doc-content wrap-break-word" v-html="article_html" />
+        <article
+          class="doc-content wrap-break-word"
+          v-html="article_html"
+          @click="onArticleClick"
+        />
       </div>
     </div>
   </div>

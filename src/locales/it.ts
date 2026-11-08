@@ -118,6 +118,9 @@ export default {
     notFoundTitle: 'Pagina non ancora scritta',
     notFoundText: 'Non esiste una pagina di documentazione per {path}.',
     backToIndex: 'Torna all’indice',
+    copyCode: 'Copia',
+    copiedCode: 'Copiato!',
+    copyCodeLabel: 'Copia il codice negli appunti',
     callouts: {
       NOTE: 'Nota',
       TIP: 'Suggerimento',

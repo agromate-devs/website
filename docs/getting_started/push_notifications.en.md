@@ -3,7 +3,7 @@ title: Push notifications
 description: Configure Firebase Cloud Messaging on the server and in the app to receive water reserve and temperature alerts.
 section: Getting started
 section_order: 3
-order: 25
+order: 11
 ---
 
 # Push notifications

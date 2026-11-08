@@ -2,7 +2,7 @@
 title: Webcam configuration
 section: Getting started
 section_order: 3
-order: 20
+order: 12
 draft: true
 ---
 

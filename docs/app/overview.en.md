@@ -3,7 +3,7 @@ title: App overview
 description: Features of the Agromate mobile app.
 section: Mobile app
 section_order: 5
-order: 9
+order: 8
 ---
 
 # App overview
