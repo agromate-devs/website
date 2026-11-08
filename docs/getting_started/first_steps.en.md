@@ -15,8 +15,6 @@ This guide takes you from the box to your first monitored plant.
 - A Wi‑Fi network (2.4 GHz if you are not using an ESP32-C5)
 - A server with Docker or Node.js <= 24, InfluxDB 2 and Mosquitto installed
 - [Hardware components](docs?article=components) to build the Agrosmart
-- Optionally, a Firebase project to receive [push notifications](/docs?article=push_notifications) about the water
-  reserve and the temperature
 
 ### Docker installation
 
@@ -44,7 +42,7 @@ services:
     container_name: influxdb
     restart: unless-stopped
     ports:
-      - 8086:8086
+      - "8086:8086"
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=agromate
@@ -75,9 +73,10 @@ services:
     image: andreockx/agromate-server
     container_name: agromate
     restart: unless-stopped
-    # Missing env
+    env_file:
+      - .env
     ports:
-      - 3000:3000
+      - "3000:3000"
     depends_on:
       - influxdb
       - mosquitto
@@ -114,7 +113,7 @@ plugin_opt_config_file /mosquitto/data/dynamic-security.json
 ```
 
 ```toml
-# influxdb.conf
+# telegraf.conf
 [agent]
   interval = "10s"
   round_interval = true
@@ -135,7 +134,7 @@ plugin_opt_config_file /mosquitto/data/dynamic-security.json
   topics = ["agrosmart/metrics"]
   data_format = "json"
   tag_keys = ["id"]
-  json_string_fields = ["id", "temperature", "humidity"]
+  json_string_fields = ["id", "type", "temperature", "humidity", "last_irrigation", "water_reserve"]
   username = "telegraf_consumer"
   password = "${MQTT_PASSWORD}"
 ```
@@ -145,6 +144,7 @@ plugin_opt_config_file /mosquitto/data/dynamic-security.json
 Now it's time to generate the Mosquitto password, start the Mosquitto container:
 
 ```bash
+touch .env # Create an empty env file to avoid docker error
 docker compose up mosquitto -d
 # Wait some time or check that mosquitto has successfully started using: docker logs mosquitto
 # Then read the password.
@@ -249,14 +249,70 @@ dynsec getClient api_server
 > The default `democlient` user has read/write access to every topic, if you don't need it remove it with
 > `dynsec deleteClient democlient`.
 
+#### Configuring the server
+
+The Agromate server reads its configuration from the `.env` file in the same folder of the docker-compose.yaml file.
+Replace the empty file created before with the following content:
+
+```bash
+DATABASE_URL=file:/app/data/agromate.db
+JWT_SECRET=mysupersecret
+COOKIE_SECRET=mysupersecret2
+MQTT_URL=mqtt://mosquitto:1883
+MQTT_PASSWORD=someothergeneratedpassword # Password of the api_server MQTT user
+INFLUX_HOST=http://influxdb:8086
+INFLUX_TOKEN=mysupersecrettoken # Same as DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
+INFLUX_BUCKET=agromate
+INFLUX_ORG=agromate
+# Needed only for TURN support in webcam
+TURN_URL=turn.example.com:50000
+TURN_SECRET=replace-with-your-turn-secret
+# 2MB in bytes
+MAX_IMAGE_SIZE=2097152
+# Password reset email
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-smtp-user@example.com
+SMTP_PASSWORD=replace-with-your-smtp-password
+SMTP_FROM=Agromate <no-reply@example.com>
+RESET_PASSWORD_URL=http://your-ip:3000/reset_password.html
+# 15 minutes
+AGROSMART_CACHE_TTL_MS=900000
+NOTIFICATION_COOLDOWN_MINUTES=360
+ALERT_DRY_RUN=false
+```
+
+> [!CAUTION]
+> Replace `JWT_SECRET` and `COOKIE_SECRET` with long random strings (for example generated with
+> `openssl rand -hex 32`), and never publish your `.env` file.
+
+Before starting the whole stack, give the server container user (UID `100`, GID `101`) the ownership of the folders
+mounted as volumes, otherwise the server can't write the database and the uploaded images:
+
+```bash
+mkdir -p server/data server/public
+sudo chown -R 100:101 server/data server/public
+```
+
 Now you are ready to run the whole Agromate stack!
 
 ```bash
 docker compose up -d
 ```
 
-Going to your-ip:3000 should give you an unauthorized response. If all is fine, you are ready to [build your first
-Agrosmart!](/docs?article=building_agrosmart)
+Going to your-ip:3000 should give you an unauthorized response.
+
+> [!TIP]
+> The server adds the [default plants](/docs?article=default_plants) to the database automatically every time it
+> starts.
+
+> [!WARNING]
+> The `./server/public` volume replaces the `public` folder of the image, so the plant images are not there on the
+> first start. Copy the `public/plants/` folder of the server repository into `./server/public/plants/`, otherwise the
+> catalog shows the plants without images.
+
+If all is fine, you are ready to [build your first Agrosmart!](/docs?article=building_agrosmart)
 
 > [!TIP]
 > To receive a notification on your phone when the water tank is running low or the temperature is out of range,
