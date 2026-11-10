@@ -82,12 +82,13 @@ services:
       - mosquitto
     volumes:
       - ./server/data:/app/data
-      - ./server/public:/app/public
+      - server_storage:/app/public
 
 volumes:
   influxdb-storage:
   mosquitto-data:
   mosquitto-log:
+  server_storage:
 ```
 
 > [!CAUTION]
