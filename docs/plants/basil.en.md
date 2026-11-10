@@ -8,7 +8,7 @@ order: 21
 
 # Basil
 
-This page explains the values of the default basil plant (`idSeed` 1 in `prisma/seed/plants.json`). For the meaning and
+This page explains the values of the default basil plant. For the meaning and
 units of each field, see [Default plants](/docs?article=default_plants).
 
 Basil (_Ocimum basilicum_) is a leafy herb that needs plenty of heat and light. The values below assume basil grown in
