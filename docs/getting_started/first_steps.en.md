@@ -14,7 +14,7 @@ This guide takes you from the box to your first monitored plant.
 - An Android or iOS smartphone with the Agromate app
 - A Wi‑Fi network (2.4 GHz if you are not using an ESP32-C5)
 - A server with Docker or Node.js <= 24, InfluxDB 2 and Mosquitto installed
-- [Hardware components](docs?article=components) to build the Agrosmart
+- [Hardware components](/docs?article=building_agrosmart) to build the Agrosmart
 
 ### Docker installation
 
@@ -31,7 +31,7 @@ services:
     container_name: mosquitto
     restart: unless-stopped
     ports:
-      - "1883:1883"
+      - '1883:1883'
     volumes:
       - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
       - mosquitto-data:/mosquitto/data
@@ -42,7 +42,7 @@ services:
     container_name: influxdb
     restart: unless-stopped
     ports:
-      - "8086:8086"
+      - '8086:8086'
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=agromate
@@ -64,10 +64,10 @@ services:
       INFLUX_TOKEN: mysupersecrettoken # Same as DOCKER_INFLUXDB_INIT_ADMIN_TOKEN
       INFLUX_ORG: agromate
       INFLUX_BUCKET: agromate
-      MQTT_PASSWORD: "somegeneratedpassword"
+      MQTT_PASSWORD: 'somegeneratedpassword'
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    command: [ "--config", "/etc/telegraf/telegraf.conf" ]
+    command: ['--config', '/etc/telegraf/telegraf.conf']
 
   agromate-server:
     image: andreockx/agromate-server
@@ -76,7 +76,7 @@ services:
     env_file:
       - .env
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - influxdb
       - mosquitto
@@ -93,8 +93,7 @@ volumes:
 
 > [!CAUTION]
 > Change all the default password in the docker-compose.yaml file except the MQTT one that will be generated in the
-following step.
-
+> following step.
 
 And here are the mosquitto and telegraf configuration, put it respectivly in:
 

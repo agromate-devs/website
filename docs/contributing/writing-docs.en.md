@@ -14,7 +14,7 @@ file and reload.
 ## Paths
 
 | File                         | Address               |
-|------------------------------|-----------------------|
+| ---------------------------- | --------------------- |
 | `docs/index.en.md`           | `/docs`               |
 | `../architecture/mqtt.en.md` | `/docs/firmware/mqtt` |
 | `docs/app/index.en.md`       | `/docs/app`           |
@@ -35,10 +35,10 @@ draft: true
 ```
 
 | Field           | Required | Description                                                                                          |
-|-----------------|----------|------------------------------------------------------------------------------------------------------|
+| --------------- | -------- | ---------------------------------------------------------------------------------------------------- |
 | `title`         | no       | Title in the sidebar. Defaults to the first `# heading`                                              |
 | `description`   | no       | Short page description                                                                               |
-| `section`       | no       | Sidebar group (default: *General*)                                                                   |
+| `section`       | no       | Sidebar group (default: _General_)                                                                   |
 | `section_order` | no       | Position of the section in the sidebar (1 = first). Use the same number in every page of the section |
 | `order`         | no       | Reading order. Sections follow the order of their first page                                         |
 | `draft`         | no       | `true` shows the **Draft** label                                                                     |

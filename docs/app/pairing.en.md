@@ -20,7 +20,7 @@ your smartphone.
 2. In the app, choose the plant to grow in the Search section and tap **Plant** then tap **Start the pairing**. Location
    permission and WiFi
    password will be asked.
-4. Wait for the confirmation: the phone will send Wi-Fi SSID+password and MQTT connection details to the Agrosmart
+3. Wait for the confirmation: the phone will send Wi-Fi SSID+password and MQTT connection details to the Agrosmart
    using the ESP-Touch v2 protocol.
 
 <div class="grid grid-cols-2 gap-2">
@@ -39,17 +39,16 @@ your smartphone.
    Agrosmart
    to PC and erase the flash:
 
-    ```bash
-    esptool erase-flash
-    ```
+   ```bash
+   esptool erase-flash
+   ```
 
 3. If the Agrosmart can't connect to the supplied network, you can check two thing:
 
-    - The supplied Wi-Fi network is 5GHz and it's not separated from the 2.4GHz. In there are two solutions:
-        - Use an ESP32 that supports the 5GHZ Wi-Fi like the ESP32-C5
-        - Separate the 2.4GHZ and the 5GHZ by giving them two different SSID then connect the phone to the 2.4GHz one
-          before
-          starting the pairing process
-    - The Wi-Fi is too far from the Agrosmart. Use a Wi-Fi extender or build an antenna to help gaining signal
-      if possible
-
+   - The supplied Wi-Fi network is 5GHz and it's not separated from the 2.4GHz. In there are two solutions:
+     - Use an ESP32 that supports the 5GHZ Wi-Fi like the ESP32-C5
+     - Separate the 2.4GHZ and the 5GHZ by giving them two different SSID then connect the phone to the 2.4GHz one
+       before
+       starting the pairing process
+   - The Wi-Fi is too far from the Agrosmart. Use a Wi-Fi extender or build an antenna to help gaining signal
+     if possible

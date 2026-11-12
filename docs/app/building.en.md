@@ -51,7 +51,7 @@ MQTT_URL=mqtt://192.168.1.10:1883
 ```
 
 | Variable   | Example                    | Used for                                                                        |
-|------------|----------------------------|---------------------------------------------------------------------------------|
+| ---------- | -------------------------- | ------------------------------------------------------------------------------- |
 | `API_URL`  | `http://192.168.1.10:3000` | Base URL of the Agromate server REST API                                        |
 | `MQTT_URL` | `mqtt://192.168.1.10:1883` | MQTT broker. Sent to the Agrosmart during pairing and used by the webcam viewer |
 
@@ -155,12 +155,12 @@ flutter build ipa                # iOS, requires a configured Apple signing team
 > [!NOTE]
 > The Android release build is currently signed with the **debug key** (see `android/app/build.gradle.kts`), and the
 > application ID is `com.agromate.agromate`. You can change it by finding and replacing every entry of
-`com.agromate.agromate`.
+> `com.agromate.agromate`.
 
 ## Troubleshooting
 
 | Problem                                                  | Cause and solution                                                                                                                      |
-|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `No file or variants found for asset: .env`              | The `.env` file is missing from the project root. Create it as described above                                                          |
 | `Error when reading 'lib/firebase_options.dart'`         | The Firebase configuration was not generated. Run `flutterfire configure`                                                               |
 | Errors about missing `_$...` mixins or `*.g.dart` files  | The MobX code was not generated. Run `build_runner build`                                                                               |

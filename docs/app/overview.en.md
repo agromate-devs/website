@@ -22,7 +22,7 @@ to pair an Agrosmart, choose what it grows and control it remotely.
 Once logged in, the app is organized in five tabs reachable from the bottom navigation bar:
 
 | Tab          | What it does                                                        |
-|--------------|---------------------------------------------------------------------|
+| ------------ | ------------------------------------------------------------------- |
 | **Home**     | Your Agrosmarts with their latest readings                          |
 | **Webcam**   | Live view of the webcams watching your plants                       |
 | **Search**   | The plant catalog: browse, add and edit plants, start a new pairing |
@@ -52,7 +52,7 @@ two groups: **Hydration parameters** and **Atmosphere & light**.
 > [!WARNING]
 > During the pairing, don't leave this screen without tapping **Assign plant to Agrosmart**. If you go back, the
 > Agrosmart keeps waiting for its configuration and must be reset before it can be paired again (see
-> [Troubleshooting](docs?article=pairing)).
+> [Troubleshooting](/docs?article=pairing)).
 
 ### Hydration parameters
 

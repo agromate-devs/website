@@ -20,7 +20,7 @@ This guide assumes you already have a working server, as described in [First ste
 ## Alerts
 
 | Alert                    | Sent when                                                                              | Example                                                                                  |
-|--------------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| ------------------------ | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | **Water reserve**        | The [water level sensor](/docs?article=building_agrosmart) reports the tank at reserve | _Greenhouse 1: water reserve_ The water tank is almost empty, refill it to keep...       |
 | **Temperature too low**  | The temperature is below the minimum of the **Temperature Range** of the Agrosmart     | _Greenhouse 1: temperature too low_ The temperature is 12.5°C, below the minimum of 15°C |
 | **Temperature too high** | The temperature is above the maximum of the **Temperature Range** of the Agrosmart     | _Greenhouse 1: temperature too high_ The temperature is 36°C, above the maximum of 30°C  |
@@ -95,7 +95,7 @@ started from**. If the file is missing, the notification worker can't start (see
 All the notification variables are optional:
 
 | Variable                        | Default           | Description                                                                                    |
-|---------------------------------|-------------------|------------------------------------------------------------------------------------------------|
+| ------------------------------- | ----------------- | ---------------------------------------------------------------------------------------------- |
 | `NOTIFICATION_COOLDOWN_MINUTES` | `360`             | Minimum time between two notifications of the same alert for the same Agrosmart                |
 | `AGROSMART_CACHE_TTL_MS`        | `900000` (15 min) | How long the owner and the settings of an Agrosmart are cached by the worker                   |
 | `ALERT_DRY_RUN`                 | unset             | When `true`, Firebase is not used at all: the alerts are only written to the log (for testing) |
@@ -107,16 +107,15 @@ and `public`, and mount it **read-only** in the container at `/app/firebase-serv
 working directory of the image):
 
 ```yaml
-  agromate-server:
-    # ...
-    environment:
-      NOTIFICATION_COOLDOWN_MINUTES=360
-      AGROSMART_CACHE_TTL_MS=900000
-      ALERT_DRY_RUN=false
-    volumes:
-      - ./server/data:/app/data
-      - ./server/public:/app/public
-      - ./server/firebase-service-account.json:/app/firebase-service-account.json:ro
+agromate-server:
+  # ...
+  environment: NOTIFICATION_COOLDOWN_MINUTES=360
+    AGROSMART_CACHE_TTL_MS=900000
+    ALERT_DRY_RUN=false
+  volumes:
+    - ./server/data:/app/data
+    - ./server/public:/app/public
+    - ./server/firebase-service-account.json:/app/firebase-service-account.json:ro
 ```
 
 The server runs as the unprivileged `agromate` user inside the container, so the file must be readable by it:
@@ -174,7 +173,7 @@ Select the platforms you want to build (**android**, and **ios** if you need it)
 your Firebase project (on Android with the package name `com.example.agromate_mobile_app`) and generates:
 
 | File                                  | Content                                                   |
-|---------------------------------------|-----------------------------------------------------------|
+| ------------------------------------- | --------------------------------------------------------- |
 | `lib/firebase_options.dart`           | Firebase options used by `Firebase.initializeApp()`       |
 | `android/app/google-services.json`    | Android configuration, read by the Google Services plugin |
 | `ios/Runner/GoogleService-Info.plist` | iOS configuration (only if you selected iOS)              |
@@ -262,7 +261,7 @@ that would be sent is written to the log instead:
 The notification worker writes its messages in the server log with `module: "metrics-notifier"`.
 
 | Symptom                                                                  | Likely cause                                                                                                                                                              |
-|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Metrics notifier worker exited with code 1, restarting in 5s` in a loop | `firebase-service-account.json` is missing or unreadable in the working directory of the server (`/app` with Docker): check the path, the volume and the file permissions |
 | `Subscribe to agrosmart/metrics denied by broker`                        | The `api_server` role can't subscribe to the metrics: add the ACLs shown in **MQTT permissions**                                                                          |
 | No `FID registered` after login                                          | Wrong `API_URL` in the app `.env`, or the app was built without a valid Firebase configuration (look for `Error during FCM registration` in the Flutter console)          |

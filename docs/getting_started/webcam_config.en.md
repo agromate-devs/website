@@ -3,7 +3,6 @@ title: Webcam configuration
 section: Getting started
 section_order: 3
 order: 12
-draft: true
 ---
 
 # Webcam configuration
@@ -85,7 +84,7 @@ python setup_mqtt_client.py \
 ```
 
 | Option           | Default              | Description                                |
-|------------------|----------------------|--------------------------------------------|
+| ---------------- | -------------------- | ------------------------------------------ |
 | `--broker`, `-b` | (required)           | Hostname or IP of the Mosquitto broker     |
 | `--port`, `-p`   | `1883`               | Broker port                                |
 | `--server-url`   | (required)           | Base URL of the Agromate server            |
@@ -161,7 +160,7 @@ video opens in landscape full screen once the connection is established.
 
 <!-- TODO: screenshot of the live video -->
 
-[//]: # (![Live video]&#40;/docs-assets/webcam/webcam-viewer.png&#41;)
+[//]: # '![Live video](/docs-assets/webcam/webcam-viewer.png)'
 
 > [!NOTE]
 > A camera can be paired with only one account. If adding it fails with _Failed to add webcam_, check that username and
@@ -187,7 +186,7 @@ python main.py --video-device /dev/videoN --video-size 640x480
 ```
 
 | Option                  | Default       | Description                                                   |
-|-------------------------|---------------|---------------------------------------------------------------|
+| ----------------------- | ------------- | ------------------------------------------------------------- |
 | `--video-device`, `-vd` | `/dev/video0` | Video device to stream                                        |
 | `--video-size`, `-v`    | `640x480`     | Resolution, must be one supported by the webcam               |
 | `--video-format`, `-vf` | `v4l2`        | FFmpeg input format (`v4l2` on Linux)                         |
@@ -287,7 +286,7 @@ The server generates the TURN credentials for both the app and the camera throug
 set two environment variables:
 
 | Variable      | Description                                                                                    |
-|---------------|------------------------------------------------------------------------------------------------|
+| ------------- | ---------------------------------------------------------------------------------------------- |
 | `TURN_URL`    | Host and port of the TURN server, **without** the `turn:` prefix, e.g. `turn.example.com:3478` |
 | `TURN_SECRET` | The same value as `static-auth-secret` in `turnserver.conf`                                    |
 
@@ -304,11 +303,11 @@ If you use the Docker Compose setup from [First steps](/docs?article=first_steps
 `agromate-server` service:
 
 ```yaml
-  agromate-server:
-    # ...
-    environment:
-      TURN_URL: turn.example.com:3478
-      TURN_SECRET: <same value as static-auth-secret>
+agromate-server:
+  # ...
+  environment:
+    TURN_URL: turn.example.com:3478
+    TURN_SECRET: <same value as static-auth-secret>
 ```
 
 The variables are read only at startup, so restart the server afterwards (`docker compose up -d agromate-server` with
@@ -321,7 +320,7 @@ one hour: the camera refreshes them automatically, the app requests new ones eve
 `/turn` accepts two kinds of authentication:
 
 | Client | `Authorization` header                              |
-|--------|-----------------------------------------------------|
+| ------ | --------------------------------------------------- |
 | App    | `Bearer <session token>` obtained from `/login`     |
 | Camera | `Basic base64(<camera username>:<camera password>)` |
 
@@ -338,7 +337,7 @@ If no TURN credentials are available the camera still works, using STUN only. Ch
 ## Troubleshooting
 
 | Symptom                                              | Likely cause                                                                         |
-|------------------------------------------------------|--------------------------------------------------------------------------------------|
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | `Configuration file 'camera_config.json' not found.` | The service was started from another directory: check `WorkingDirectory`             |
 | `MQTT username or password not found`                | `camera_config.json` is incomplete: run `setup_mqtt_client.py` again                 |
 | Connection refused / not authorized on MQTT          | Wrong broker address, or the camera has not been added from the app (or was removed) |

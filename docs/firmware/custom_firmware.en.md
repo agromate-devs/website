@@ -14,7 +14,7 @@ is built for the **ESP32‑C5** with the default configuration. Build it yoursel
 
 - use a different chip (ESP32, ESP32‑S3, ...);
 - wired the parts to different GPIOs than the
-  [default pins](docs?article=building_agrosmart);
+  [default pins](/docs?article=building_agrosmart);
 - use a different sensor, probe or LED strip type, or a strip with a different number of LEDs;
 - want to change the check and publish intervals, the pump flow rate or the OTA settings.
 - want to imrprove firmware
@@ -51,18 +51,18 @@ installed (currently v6.0.1 is officially supported).
    idf.py flash monitor
    ```
 
-5. Pair the device with the app, if you haven't done it yet: see [Pairing the Agrosmart](docs?article=pairing).
+5. Pair the device with the app, if you haven't done it yet: see [Pairing the Agrosmart](/docs?article=pairing).
 
 ## Configuration options
 
 The default pins for each chip are listed in
-[Building an Agrosmart](docs?article=building_agrosmart).
+[Building an Agrosmart](/docs?article=building_agrosmart).
 
 1. Run `idf.py menuconfig` and open **Agrosmart configuration**.
 2. These are (almost) all the options available in the menuconfig:
 
 | Configuration                     | Options                                                                                 |
-|-----------------------------------|-----------------------------------------------------------------------------------------|
+| --------------------------------- | --------------------------------------------------------------------------------------- |
 | DHT Configuration                 | Chip type, DHT data GPIO number                                                         |
 | Humidifier configuration          | Humidifier control GPIO number, threshold range, check interval                         |
 | Water pump/tank configuration     | Flow rate, water pump control GPIO number, GPIO of water level sensor                   |
@@ -76,7 +76,7 @@ The default pins for each chip are listed in
 > [!NOTE]
 > Mind the units: `SOIL_MOISTURE_CHECK_INTERVAL_MS` and `HUMIDIFIER_CHECK_INTERVAL_MS` are in
 > **milliseconds**, the other intervals in **seconds**. With time‑based irrigation the soil interval
-> is not used: the pump runs every *n* hours set for the plant in the app.
+> is not used: the pump runs every _n_ hours set for the plant in the app.
 
 3. Save with `S`, exit with `Q`, then rebuild and flash:
 
@@ -104,7 +104,7 @@ When picking new pins:
 - the soil probe must use an **ADC1** pin, otherwise the build fails:
 
 | Target              | Allowed GPIOs |
-|---------------------|---------------|
+| ------------------- | ------------- |
 | ESP32               | 32–39         |
 | ESP32‑S2 / ESP32‑S3 | 1–10          |
 | ESP32‑C5            | 1–5           |

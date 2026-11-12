@@ -17,7 +17,7 @@ the mobile app.
 ## Project components
 
 | Component          | Technology                           | Repository                                                                      |
-|--------------------|--------------------------------------|---------------------------------------------------------------------------------|
+| ------------------ | ------------------------------------ | ------------------------------------------------------------------------------- |
 | Agrosmart firmware | ESP-IDF                              | [agromate-devs/agrosmart](https://github.com/agromate-devs/agrosmart)           |
 | Mobile app         | Flutter                              | [agromate-devs/new_mobile_app](https://github.com/agromate-devs/new_mobile_app) |
 | Server             | Fastify, Prisma, Mosquitto, InfluxDB | [agromate-devs/server](https://github.com/agromate-devs/server)                 |
@@ -30,4 +30,4 @@ the mobile app.
 - **Mobile app** — app features and screens.
 - **Contributing** — how to write new documentation pages.
 
-Start from [First steps](docs?article=first_steps).
+Start from [First steps](/docs?article=first_steps).

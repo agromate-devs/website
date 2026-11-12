@@ -108,7 +108,8 @@ export default {
     navLabel: 'Documentazione',
     draft: 'Bozza',
     draftBadge: 'Bozza — contenuto in lavorazione',
-    draftWarning: 'Questa pagina è una bozza: il contenuto potrebbe essere incompleto o inaccurato.',
+    draftWarning:
+      'Questa pagina è una bozza: il contenuto potrebbe essere incompleto o inaccurato.',
     untranslated:
       'Questa pagina non è ancora disponibile in italiano: stai leggendo la versione inglese.',
     adjacent: 'Pagine adiacenti',
