@@ -15,7 +15,7 @@ Basil (_Ocimum basilicum_) is a leafy herb that needs plenty of heat and light. 
 a pot of about 2 liters, indoors or on a balcony.
 
 | Field                     | Recommended value                                      | Why                                                                                                                         |
-|---------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Full-spectrum white, with a good share of blue and red | Blue keeps the plant compact, red drives photosynthesis.                                                                    |
 | `lightDuration`           | 14 hours                                               | Enough for vigorous growth without stress; outdoors in summer basil gets 12–14 hours.                                       |
 | `lightIntensity`          | 8-10                                                   | Basil loves strong light: With low light it stretches and loses aroma.                                                      |
@@ -36,4 +36,3 @@ weather condition:
   before the light turns out.
 - If the maximum temperature goes above 28–30 °C, shorten the interval to 1 day (24 hours).
 - In winter or with low temperatures, lengthen it to 3–4 days (72–96 hours), because the soil dries much more slowly.
-
