@@ -45,23 +45,30 @@ is bundled inside the app at build time: if it is missing, the build fails.
 Create (or edit) `.env`:
 
 ```bash
-API_URL=http://192.168.1.10:3000
+API_URL=http://your-server-ip:3000
 # Must be reachable by Agrosmart
-MQTT_URL=mqtt://192.168.1.10:1883
+MQTT_URL=mqtt://your-server-ip:1883
+# The signaling server used by webcam viewer
+SIGNALING_SERVER_URL=mqtt://your-server-ip:1883
 ```
 
-| Variable   | Example                    | Used for                                                                        |
-| ---------- | -------------------------- | ------------------------------------------------------------------------------- |
-| `API_URL`  | `http://192.168.1.10:3000` | Base URL of the Agromate server REST API                                        |
-| `MQTT_URL` | `mqtt://192.168.1.10:1883` | MQTT broker. Sent to the Agrosmart during pairing and used by the webcam viewer |
+| Variable               | Example                      | Used for                                                       |
+|------------------------|------------------------------|----------------------------------------------------------------|
+| `API_URL`              | `http://your-server-ip:3000` | Base URL of the Agromate server REST API                       |
+| `MQTT_URL`             | `mqtt://your-server-ip:1883` | MQTT broker sent to the Agrosmart during pairing               |
+| `SIGNALING_SERVER_URL` | `mqtt://your-server-ip:1883` | MQTT broker used by the webcam viewer for the WebRTC signaling |
 
 ### Rules for the values
 
 - **`API_URL`** is the address of the server that runs the `agromate-server` container (by default on port `3000`).
   Write it **without a trailing slash**: the app appends paths directly.
 - **`MQTT_URL`** must contain the scheme (`mqtt://` or `mqtts://`), the host **and the port**: This must be reachable by
-  Agrosmart (not behind VPN or localhost for example) and it's used for Agrosmart initialization and for viewing webcam.
-- Both addresses must be reachable from the phone. On the local network use the LAN IP of the server; to use the app
+  Agrosmart (not behind VPN or localhost for example) because it's sent to it during pairing.
+- **`SIGNALING_SERVER_URL`** is the MQTT broker the webcam viewer connects to for the WebRTC signaling. Use the same
+  format as `MQTT_URL`, including the port. It only needs to be reachable from the phone (and from the cameras), not
+  from the Agrosmart, so it can differ from `MQTT_URL`: for example a public `mqtts://` hostname to watch the webcams
+  from outside your home. Usually it's the same broker as `MQTT_URL`.
+- All addresses must be reachable from the phone. On the local network use the LAN IP of the server; to use the app
   from outside your home, use a public hostname (and preferably HTTPS / MQTTS).
 
 > [!IMPORTANT]
@@ -159,12 +166,12 @@ flutter build ipa                # iOS, requires a configured Apple signing team
 
 ## Troubleshooting
 
-| Problem                                                  | Cause and solution                                                                                                                      |
-| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `No file or variants found for asset: .env`              | The `.env` file is missing from the project root. Create it as described above                                                          |
-| `Error when reading 'lib/firebase_options.dart'`         | The Firebase configuration was not generated. Run `flutterfire configure`                                                               |
-| Errors about missing `_$...` mixins or `*.g.dart` files  | The MobX code was not generated. Run `build_runner build`                                                                               |
-| `API_URL is not defined in .env file`                    | The `.env` file exists but doesn't contain `API_URL`. Check the variable name and rebuild                                               |
-| Login fails with a connection error                      | `API_URL` is not reachable from the phone: check the IP and port, and that the phone is on the same network as the server               |
-| Pairing succeeds but the Agrosmart never appears online  | `MQTT_URL` is not reachable from the ESP32 (e.g. `localhost`), or the Mosquitto server credentials/ACL are wrong. Fix it and pair again |
-| `MQTT_URL is not set in .env file` when opening a webcam | Add `MQTT_URL` to `.env` and rebuild                                                                                                    |
+| Problem                                                              | Cause and solution                                                                                                                      |
+|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `No file or variants found for asset: .env`                          | The `.env` file is missing from the project root. Create it as described above                                                          |
+| `Error when reading 'lib/firebase_options.dart'`                     | The Firebase configuration was not generated. Run `flutterfire configure`                                                               |
+| Errors about missing `_$...` mixins or `*.g.dart` files              | The MobX code was not generated. Run `build_runner build`                                                                               |
+| `API_URL is not defined in .env file`                                | The `.env` file exists but doesn't contain `API_URL`. Check the variable name and rebuild                                               |
+| Login fails with a connection error                                  | `API_URL` is not reachable from the phone: check the IP and port, and that the phone is on the same network as the server               |
+| Pairing succeeds but the Agrosmart never appears online              | `MQTT_URL` is not reachable from the ESP32 (e.g. `localhost`), or the Mosquitto server credentials/ACL are wrong. Fix it and pair again |
+| `SIGNALING_SERVER_URL is not set in .env file` when opening a webcam | Add `SIGNALING_SERVER_URL` to `.env` and rebuild                                                                                        |
