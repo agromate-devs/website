@@ -7,46 +7,43 @@ order: 12
 
 # Webcam configuration
 
-Agromate can show a live view of your plants in the **Webcam** tab of the app. The video is streamed by the
-[camera service](https://github.com/agromate-devs/camera), a small Python program that runs on any Linux machine with a
-webcam attached (a Raspberry Pi works well) and talks to the rest of the Agromate stack.
+Agromate can show a live view of your plants in the **Webcam** tab of the app. The video is streamed by the [camera
+service](https://github.com/agromate-devs/camera), a small program distributed as a Docker image that runs on any Linux
+machine with a webcam attached (a Raspberry Pi works well) and talks to the rest of the Agromate stack.
 
 This guide assumes you already have a working server, as described in [First steps](/docs?article=first_steps).
 
 ## What you need
 
 - A Linux machine with a USB or CSI webcam, reachable as a V4L2 device
-- Python 3 with `venv`
-- The address of your Mosquitto broker
-- The URL of your Agromate server
+- Docker Engine with the Compose plugin
+- Python 3, only to generate the camera credentials: no virtual environment or extra modules are needed
+- The address of your Mosquitto broker that will serve as signaling server for the webcam
+- The URL of your Agromate API server
 - The Agromate app, logged in with the account that will own the camera
 - Optionally, a TURN server to watch the camera in case of "strict" NAT with your ISP (typically mobile ones)
 
+> [!WARNING]
+> The camera needs **Docker Engine on Linux**. Docker Desktop on macOS and Windows runs containers in a virtual machine:
+> it cannot pass the webcam to the container and the host network does not work the same way.
+
 ## Installing dependencies
 
-On Debian, Ubuntu or derivates:
+Install Docker Engine following the [official guide](https://docs.docker.com/engine/install/) for your distribution.
+Then, on Debian, Ubuntu or derivates, install the other tools:
 
 ```bash
 sudo apt update
-sudo apt install git python3 python3-venv v4l-utils
+sudo apt install git python3 v4l-utils
 ```
 
-Then download the camera service and install its Python dependencies (`aiomqtt`, `aiortc`, `aiohttp`) in a virtual
-environment. In this guide it is installed in `/opt/agrosmart-camera`:
+The camera itself runs in the `andreockx/agromate-webcam:latest` image, which already contains all its dependencies.
+From the [camera repository](https://github.com/agromate-devs/camera) you only need `setup_mqtt_client.py`, the script
+that generates the credentials:
 
 ```bash
-sudo git clone https://github.com/agromate-devs/camera.git /opt/agrosmart-camera
-sudo chown -R $USER: /opt/agrosmart-camera
-cd /opt/agrosmart-camera
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+wget https://raw.githubusercontent.com/agromate-devs/camera/refs/heads/main/setup_mqtt_client.py -O setup_mqtt_client.py
 ```
-
-> [!NOTE]
-> `aiortc` uses PyAV, which ships prebuilt wheels with FFmpeg included for the most common platforms. If pip has to
-> build it from source, install the FFmpeg development headers first:
-> `sudo apt install libavdevice-dev libavfilter-dev libopus-dev libvpx-dev pkg-config`.
 
 ## Finding your webcam
 
@@ -58,29 +55,27 @@ v4l2-ctl -d /dev/videoN --list-formats-ext
 ```
 
 Many webcams register more than one `/dev/videoN` node: use the one that lists actual resolutions. Note down the device
-and a supported resolution (e.g. `640x480`): you will pass them to the camera service later.
+and a supported resolution (e.g. `640x480`): you will set them in the Docker Compose service later.
 
-The user running the service must be able to read the device. On most distributions this means being in the `video`
-group:
+Note down also the numeric GID of the `video` group, which owns the webcam devices:
 
 ```bash
-sudo usermod -aG video $USER
+getent group video | cut -d: -f3
 ```
-
-Log out and back in for the change to take effect.
 
 ## Generating the camera credentials
 
 Each camera has its own **username** (`cam_xxxxxxxx`) and **password**. The username identifies the camera everywhere:
 on the Agromate server, on the MQTT broker and during the WebRTC signaling. Generate them with
-`setup_mqtt_client.py`:
+`setup_mqtt_client.py`, writing the configuration in a `webcam` folder next to your `docker-compose.yaml`:
 
 ```bash
-cd /opt/agrosmart-camera
-source .venv/bin/activate
-python setup_mqtt_client.py \
-  --broker broker-ip \
-  --server-url http://server-url:3000
+cd /path/to/your/compose/folder
+mkdir -p webcam
+python3 setup_mqtt_client.py \
+  --broker 127.0.0.1 \
+  --server-url http://127.0.0.1:3000 \
+  --output webcam/camera_config.json
 ```
 
 | Option           | Default              | Description                                |
@@ -90,12 +85,16 @@ python setup_mqtt_client.py \
 | `--server-url`   | (required)           | Base URL of the Agromate server            |
 | `--output`, `-o` | `camera_config.json` | Where to write the generated configuration |
 
+The container uses the host network, so if it runs on the same machine as the rest of the stack the broker and the
+server are reachable at `127.0.0.1`: the Compose service names (`mosquitto`, `agromate-server`) are **not** resolved.
+If the camera runs on another machine, use the IP address of the server instead.
+
 The script works offline: it generates a random username and password, saves them in `camera_config.json` and prints
 them. It does not need the Mosquitto admin password and does not contact the broker or the server: the camera is
 registered by the server when you add it from the app.
 
 ```text
-[OK] Config saved in: camera_config.json
+[OK] Config saved in: webcam/camera_config.json
 Add the webcam from the Agromate app with these credentials:
   Username: cam_...
   Password: ...
@@ -103,17 +102,29 @@ Add the webcam from the Agromate app with these credentials:
 
 ```json
 {
-  "broker": "broker-ip",
+  "broker": "127.0.0.1",
   "port": 1883,
   "username": "cam_...",
   "password": "...",
-  "server_url": "http://server-ip:3000"
+  "server_url": "http://127.0.0.1:3000"
 }
 ```
 
+Inside the container the camera runs as the unprivileged user with UID `10001`: give the file to that user and make it
+readable only by it:
+
+```bash
+sudo chown 10001 webcam/camera_config.json
+sudo chmod 600 webcam/camera_config.json
+```
+
 > [!CAUTION]
-> `camera_config.json` contains the camera's password in clear text. Keep it readable only by the user running the
-> service: `chmod 600 camera_config.json`. Whoever has the username and password can add the camera to their account.
+> `camera_config.json` contains the camera's password in clear text. Whoever has the username and password can add the
+> camera to their account.
+
+> [!IMPORTANT]
+> Create `camera_config.json` **before** starting the container. If the file does not exist, Docker creates an empty
+> directory with the same name and the camera fails with `IsADirectoryError`.
 
 ## Pairing the camera with the app
 
@@ -121,7 +132,7 @@ You need the username and password printed by `setup_mqtt_client.py`. If you no 
 configuration file:
 
 ```bash
-grep -E '"(username|password)"' /opt/agrosmart-camera/camera_config.json
+sudo grep -E '"(username|password)"' webcam/camera_config.json
 ```
 
 Then, in the app:
@@ -137,16 +148,9 @@ Then, in the app:
     <img class="w-80" src="/webcam_view.png" alt="View of the webcam tab"/>
 </div>
 
-When you add the camera, the server:
-
-1. stores it, linked to your Agromate account, with its password hashed;
-2. creates the camera's account on the MQTT broker;
-3. creates a role dedicated to the camera, which grants access only to its own signaling topics (`webrtc/<username>/#`),
-   and assigns it to the camera and to your account.
-
 The camera shows up on every phone where you log in with the same account, and no other account can watch it. Start the
-camera service only **after** adding it to the app: until then its MQTT account does not exist and the connection to the
-broker is refused.
+camera container only **after** adding it to the app: until then its MQTT account does not exist and the connection to
+the broker is refused.
 
 To watch it, tap the camera in the list. The app asks for your **account password**: it is used to log in to the MQTT
 broker, through which the phone and the camera exchange the WebRTC connection details. Tap **Connect to Webcam** and the
@@ -170,33 +174,73 @@ video opens in landscape full screen once the connection is established.
 ### Removing a camera
 
 Swipe the camera to the left in the list and confirm the deletion. The server removes the camera, its MQTT account and
-its role, so
-the camera service can no longer connect to the broker. To use it again, generate new credentials with
+its role, so the camera container can no longer connect to the broker. To use it again, generate new credentials with
 `setup_mqtt_client.py` (or reuse the ones in `camera_config.json`) and add it from the app again.
 
-## Running it manually
+## Usage with Docker
 
-Before turning it into a service, start the camera by hand to check that everything works. The service reads
-`camera_config.json` from the **current directory**, so run it from the installation folder:
+### Adding the service
 
-```bash
-cd /opt/agrosmart-camera
-source .venv/bin/activate
-python main.py --video-device /dev/videoN --video-size 640x480
+You can start using the webcam server with Docker by creating a docker-compose (or putting it in the same file of the
+server):
+
+```yaml
+services:
+  agromate-webcam:
+    image: andreockx/agromate-webcam:latest
+    container_name: agromate-webcam
+    restart: unless-stopped
+    network_mode: host
+    # Enable depends_on only if you are sharing docker-compose file with the agromate-server
+    #    depends_on:
+    #      - agromate-sserver
+    #      - mosquitto
+    devices:
+      - /dev/video0:/dev/video0
+    group_add:
+      - '39' # GID of the host "video" group, check it with: getent group video
+    environment:
+      VIDEO_DEVICE: /dev/video0
+      VIDEO_SIZE: 640x480
+      VIDEO_FORMAT: v4l2
+    volumes:
+      - ./webcam/camera_config.json:/app/camera_config.json:ro
 ```
 
-| Option                  | Default       | Description                                                   |
-| ----------------------- | ------------- | ------------------------------------------------------------- |
-| `--video-device`, `-vd` | `/dev/video0` | Video device to stream                                        |
-| `--video-size`, `-v`    | `640x480`     | Resolution, must be one supported by the webcam               |
-| `--video-format`, `-vf` | `v4l2`        | FFmpeg input format (`v4l2` on Linux)                         |
-| `--log-level`, `-l`     | `INFO`        | `DEBUG`, `INFO`, `WARNING`, `ERROR` or `CRITICAL`             |
-| `--test`, `-t`          | off           | Stream a sample video from the internet instead of the webcam |
+The video options are set with environment variables:
+
+| Variable       | Default       | Description                                                                                                                                                                   |
+| -------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `VIDEO_DEVICE` | `/dev/video0` | Video device to stream                                                                                                                                                        |
+| `VIDEO_SIZE`   | `640x480`     | Resolution, must be one supported by the webcam. Sometimes cheap cameras expose an unsupported resolution, in that case stream will be blank or an error is going to be throw |
+| `VIDEO_FORMAT` | `v4l2`        | FFmpeg input format                                                                                                                                                           |
+
+The other settings in the service:
+
+- `devices` makes the webcam available in the container. Use the device you found in _Finding your webcam_ and set the
+  same path in `VIDEO_DEVICE`.
+- `group_add` gives the container access to the device: it must be the **numeric** GID of the `video` group on the
+  host. The group name doesn't work, because the group IDs inside the image are different from the host ones.
+- `network_mode: host` lets WebRTC announce the real IP address of the machine. With the default Docker network the
+  camera would announce the container's internal address, and phones could connect only through a TURN server.
+
+To get more detailed logs, add `command: ['--log-level', 'DEBUG']` to the service (`DEBUG`, `INFO`, `WARNING`, `ERROR`
+or `CRITICAL`, default `INFO`).
+
+### Starting it
+
+Start the container only **after** adding the camera from the app: until then the broker refuses the connection and the
+container keeps restarting.
+
+```bash
+docker compose up -d agromate-webcam
+docker compose logs -f agromate-webcam
+```
 
 You should see something like:
 
 ```text
-Starting WebRTC camera cam_... sender with MQTT signaling to broker broker-ip:1883
+Starting WebRTC camera cam_... sender with MQTT signaling to broker 127.0.0.1:1883
 2026-10-11 10:00:00 [INFO] root: Subscribed to 'webrtc/cam_.../signaling'
 2026-10-11 10:00:01 [INFO] root: TURN credentials updated (ttl=3600s). Next refresh in 3480s.
 ```
@@ -204,54 +248,13 @@ Starting WebRTC camera cam_... sender with MQTT signaling to broker broker-ip:18
 Open the **Webcam** tab in the app: when a viewer connects the log shows `Offer received from viewer` followed by
 `Connection state is connected`.
 
+After changing the service, run `docker compose up -d agromate-webcam` again to recreate the container. The container
+starts again at boot and after a crash thanks to `restart: unless-stopped`.
+
 > [!TIP]
-> If you have no image, try `--test`: if the sample video plays, the network side is fine and the problem is the webcam
+> If you have no image, try the sample video instead of the webcam with
+> `docker compose run --rm agromate-webcam --test`: if it plays, the network side is fine and the problem is the webcam
 > device, its resolution or its permissions.
-
-## Running it as a systemd service
-
-To start the camera at boot and restart it if it crashes, create a systemd unit. Replace `pi` with the user that owns
-`/opt/agrosmart-camera`:
-
-```ini
-# /etc/systemd/system/agrosmart-camera.service
-[Unit]
-Description=Agrosmart camera (WebRTC over MQTT)
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-Type=simple
-User=pi
-Group=video
-WorkingDirectory=/opt/agrosmart-camera
-ExecStart=/opt/agrosmart-camera/.venv/bin/python main.py --video-device /dev/video0 --video-size 640x480
-Restart=on-failure
-RestartSec=10
-Environment=PYTHONUNBUFFERED=1
-
-[Install]
-WantedBy=multi-user.target
-```
-
-> [!IMPORTANT]
-> `WorkingDirectory` is required: the service looks for `camera_config.json` in the directory it is started from.
-
-Enable and start it:
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable --now agrosmart-camera
-sudo systemctl status agrosmart-camera
-```
-
-Follow the logs with:
-
-```bash
-journalctl -u agrosmart-camera -f
-```
-
-After changing the unit file, run `sudo systemctl daemon-reload` and `sudo systemctl restart agrosmart-camera`.
 
 ## Watching from outside your network (TURN)
 
@@ -290,15 +293,6 @@ set two environment variables:
 | `TURN_URL`    | Host and port of the TURN server, **without** the `turn:` prefix, e.g. `turn.example.com:3478` |
 | `TURN_SECRET` | The same value as `static-auth-secret` in `turnserver.conf`                                    |
 
-If you run the server with Node.js, add them to the `.env` file in the server folder:
-
-```ini
-# .env
-# Needed only for TURN support in webcam
-TURN_URL=turn.example.com:3478
-TURN_SECRET=<same value as static-auth-secret>
-```
-
 If you use the Docker Compose setup from [First steps](/docs?article=first_steps), add the variables to the
 `agromate-server` service:
 
@@ -314,34 +308,21 @@ The variables are read only at startup, so restart the server afterwards (`docke
 Docker). If one of the two is missing, the server logs
 `TURN endpoint disabled: TURN_SECRET and/or TURN_URL not set in environment variables` and `/turn` is not available.
 
-The server returns both `turn:<TURN_URL>?transport=udp` and `turn:<TURN_URL>?transport=tcp`, with credentials valid for
-one hour: the camera refreshes them automatically, the app requests new ones every time you open a camera.
-
-`/turn` accepts two kinds of authentication:
-
-| Client | `Authorization` header                              |
-| ------ | --------------------------------------------------- |
-| App    | `Bearer <session token>` obtained from `/login`     |
-| Camera | `Basic base64(<camera username>:<camera password>)` |
-
-The camera does not have an Agromate account and never calls `/login`: it authenticates directly with its own
-credentials from `camera_config.json`.
-
 > [!CAUTION]
 > Anyone who knows `TURN_SECRET` can create valid credentials for your TURN server and use it as a relay. Generate a
 > long random value and store it securely.
 
-If no TURN credentials are available the camera still works, using STUN only. Check the log for
-`Using TURN server: [...]` when a viewer connects to confirm that TURN is in use.
-
 ## Troubleshooting
 
-| Symptom                                              | Likely cause                                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `Configuration file 'camera_config.json' not found.` | The service was started from another directory: check `WorkingDirectory`             |
-| `MQTT username or password not found`                | `camera_config.json` is incomplete: run `setup_mqtt_client.py` again                 |
-| Connection refused / not authorized on MQTT          | Wrong broker address, or the camera has not been added from the app (or was removed) |
-| `GET /turn failed (401)`                             | The camera has not been added from the app, or its credentials do not match          |
-| `TURN updater: failed to fetch credentials, ...`     | Agromate server unreachable, or `/turn` disabled (see the server log)                |
-| `No video stream available from player.`             | Wrong `--video-device`, unsupported `--video-size`, or missing `video` permissions   |
-| Works at home, not on mobile data                    | No TURN server, or its ports are not reachable from the internet                     |
+| Symptom                                              | Likely cause                                                                                                    |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `Configuration file 'camera_config.json' not found.` | The `volumes` entry is missing, or does not mount the file at `/app/camera_config.json`                         |
+| `MQTT username or password not found`                | `camera_config.json` is incomplete: run `setup_mqtt_client.py` again                                            |
+| Connection refused / not authorized on MQTT          | Wrong broker address, or the camera has not been added from the app (or was removed)                            |
+| `GET /turn failed (401)`                             | The camera has not been added from the app, or its credentials do not match                                     |
+| `TURN updater: failed to fetch credentials, ...`     | Agromate server unreachable, or `/turn` disabled (see the server log)                                           |
+| `No video stream available from player.`             | Wrong `VIDEO_DEVICE`, or `VIDEO_SIZE` not supported by the webcam                                               |
+| `IsADirectoryError: ... 'camera_config.json'`        | The file did not exist at the first start: remove the `webcam/camera_config.json` directory and create the file |
+| `PermissionError: ... 'camera_config.json'`          | The file is not readable by UID `10001`: `sudo chown 10001 webcam/camera_config.json`                           |
+| Permission denied or no such device on `/dev/videoN` | `VIDEO_DEVICE` differs from the path in `devices`, or `group_add` is not the GID of the host `video` group      |
+| Works at home, not on mobile data                    | No TURN server, or its ports are not reachable from the internet                                                |
