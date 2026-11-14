@@ -18,7 +18,7 @@ soil.
 **Difficulty**: 2/5 (easy).
 
 | Field                     | Recommended value                   | Why                                                                                                                                   |
-|---------------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | White, full-spectrum light, the closest to the Mediterranean sun.                                                                     |
 | `lightDuration`           | 14 hours (07:00–21:00)              | 14 hours, a Mediterranean summer day.                                                                                                 |
 | `lightIntensity`          | 9                                   | High: with low light rosemary grows thin and loses its aroma.                                                                         |

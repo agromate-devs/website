@@ -17,7 +17,7 @@ below assume mint grown in a pot of about 2 liters.
 **Difficulty**: 1/5 (very easy).
 
 | Field                     | Recommended value                   | Why                                                                                                                  |
-|---------------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | Leafy plant: a full-spectrum white gives the balance of blue (compact leaves) and red (growth) it needs.             |
 | `lightDuration`           | 14 hours (07:00–21:00)              | 14 hours is a long summer day: mint grows bushy and aromatic.                                                        |
 | `lightIntensity`          | 7                                   | Medium-high: mint also grows in partial shade, but with more light the aroma is stronger.                            |

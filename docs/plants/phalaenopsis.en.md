@@ -18,7 +18,7 @@ bark, with drainage holes.
 **Difficulty**: 4/5 (hard).
 
 | Field                     | Recommended value                   | Why                                                                                                       |
-|---------------------------|-------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | White light; the orchid needs little light and the spectrum is less important than avoiding excess.       |
 | `lightDuration`           | 12 hours (08:00–20:00)              | 12 hours, like the equatorial day of its native forests.                                                  |
 | `lightIntensity`          | 4                                   | Low: it lives in the shade of the forest canopy and strong light burns the leaves (yellow-brown patches). |

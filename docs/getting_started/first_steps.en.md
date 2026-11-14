@@ -67,7 +67,7 @@ services:
       MQTT_PASSWORD: 'somegeneratedpassword'
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    command: [ '--config', '/etc/telegraf/telegraf.conf' ]
+    command: ['--config', '/etc/telegraf/telegraf.conf']
 
   agromate-server:
     image: andreockx/agromate-server
@@ -136,7 +136,7 @@ plugin_opt_config_file /mosquitto/data/dynamic-security.json
   json_string_fields = ["id", "type", "temperature", "humidity", "last_irrigation", "water_reserve"]
   username = "telegraf_consumer"
   password = "${MQTT_PASSWORD}"
-  
+
 # Enable this in case of problem with metrics not being recorded into Influxdb
 #[[outputs.file]]
 #  files = ["stdout"]

@@ -18,7 +18,7 @@ liters.
 **Difficulty**: 3/5 (medium).
 
 | Field                     | Recommended value                    | Why                                                                                                                              |
-|---------------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Purple — `4286578816` (`0xFF800080`) | Purple (red + blue) to support flowering and fruit ripening.                                                                     |
 | `lightDuration`           | 16 hours (06:00–22:00)               | 16 hours: chili peppers are slow growers and long days speed them up.                                                            |
 | `lightIntensity`          | 10                                   | Maximum: with low light the plant stretches and flowers late.                                                                    |

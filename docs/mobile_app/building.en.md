@@ -53,7 +53,7 @@ SIGNALING_SERVER_URL=mqtt://your-server-ip:1883
 ```
 
 | Variable               | Example                      | Used for                                                       |
-|------------------------|------------------------------|----------------------------------------------------------------|
+| ---------------------- | ---------------------------- | -------------------------------------------------------------- |
 | `API_URL`              | `http://your-server-ip:3000` | Base URL of the Agromate server REST API                       |
 | `MQTT_URL`             | `mqtt://your-server-ip:1883` | MQTT broker sent to the Agrosmart during pairing               |
 | `SIGNALING_SERVER_URL` | `mqtt://your-server-ip:1883` | MQTT broker used by the webcam viewer for the WebRTC signaling |
@@ -167,7 +167,7 @@ flutter build ipa                # iOS, requires a configured Apple signing team
 ## Troubleshooting
 
 | Problem                                                              | Cause and solution                                                                                                                      |
-|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `No file or variants found for asset: .env`                          | The `.env` file is missing from the project root. Create it as described above                                                          |
 | `Error when reading 'lib/firebase_options.dart'`                     | The Firebase configuration was not generated. Run `flutterfire configure`                                                               |
 | Errors about missing `_$...` mixins or `*.g.dart` files              | The MobX code was not generated. Run `build_runner build`                                                                               |

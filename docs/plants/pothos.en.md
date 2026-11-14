@@ -17,7 +17,7 @@ and the occasional forgotten watering. The values below assume a pot of about 2 
 **Difficulty**: 1/5 (very easy).
 
 | Field                     | Recommended value                   | Why                                                                                          |
-|---------------------------|-------------------------------------|----------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------- |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | Foliage plant: white light is enough and keeps the natural color of the leaves.              |
 | `lightDuration`           | 12 hours (08:00–20:00)              | 12 hours, like the tropical day of its native forests.                                       |
 | `lightIntensity`          | 4                                   | Low: in nature it grows in the shade of trees and direct strong light bleaches the leaves.   |

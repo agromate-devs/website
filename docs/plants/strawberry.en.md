@@ -17,7 +17,7 @@ the right type for a greenhouse with artificial light. The values below assume o
 **Difficulty**: 3/5 (medium).
 
 | Field                     | Recommended value                    | Why                                                                                                      |
-|---------------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Purple — `4286578816` (`0xFF800080`) | Purple (red + blue): red stimulates flowering and fruiting, blue keeps the plant compact.                |
 | `lightDuration`           | 14 hours (07:00–21:00)               | 14 hours: everbearing varieties flower with any day length, but more light means more and sweeter fruit. |
 | `lightIntensity`          | 9                                    | High: fruit production needs a lot of energy.                                                            |

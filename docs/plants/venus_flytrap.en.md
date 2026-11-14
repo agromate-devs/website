@@ -19,7 +19,7 @@ catalog because it needs a very specific water and a cold winter rest. The value
 **Difficulty**: 5/5 (very hard).
 
 | Field                     | Recommended value                   | Why                                                                                               |
-|---------------------------|-------------------------------------|---------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | White, full-spectrum light: good light makes the traps turn red inside.                           |
 | `lightDuration`           | 14 hours (07:00–21:00)              | 14 hours, a summer day in its native habitat.                                                     |
 | `lightIntensity`          | 10                                  | Maximum: in nature it grows in full sun; with low light the traps get long, weak and green.       |

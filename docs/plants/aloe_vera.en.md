@@ -17,7 +17,7 @@ water than from too little. The values below assume a 2 liter pot with cactus so
 **Difficulty**: 1/5 (very easy).
 
 | Field                     | Recommended value                   | Why                                                                                    |
-|---------------------------|-------------------------------------|----------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------- |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | White light; aloe is not grown for flowers, so a red-rich spectrum is not needed.      |
 | `lightDuration`           | 12 hours (07:00–19:00)              | 12 hours of strong light are enough to keep the leaves compact and upright.            |
 | `lightIntensity`          | 10                                  | Maximum: with little light aloe stretches and the leaves bend down.                    |

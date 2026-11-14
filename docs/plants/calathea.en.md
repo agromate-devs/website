@@ -18,7 +18,7 @@ values below assume a pot of about 2 liters.
 **Difficulty**: 4/5 (hard).
 
 | Field                     | Recommended value                   | Why                                                                                                                      |
-|---------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | White light keeps the natural colors of the leaf pattern.                                                                |
 | `lightDuration`           | 12 hours (08:00–20:00)              | 12 hours; the leaves follow the day-night cycle, opening with the light and closing in the dark.                         |
 | `lightIntensity`          | 3                                   | Very low: strong light fades the pattern and burns the leaves.                                                           |

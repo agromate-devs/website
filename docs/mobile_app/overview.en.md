@@ -22,7 +22,7 @@ to pair an Agrosmart, choose what it grows and control it remotely.
 Once logged in, the app is organized in five tabs reachable from the bottom navigation bar:
 
 | Tab          | What it does                                                        |
-|--------------|---------------------------------------------------------------------|
+| ------------ | ------------------------------------------------------------------- |
 | **Home**     | Your Agrosmarts with their latest readings                          |
 | **Webcam**   | Live view of the webcams watching your plants                       |
 | **Search**   | The plant catalog: browse, add and edit plants, start a new pairing |

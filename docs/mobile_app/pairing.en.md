@@ -45,10 +45,10 @@ your smartphone.
 
 3. If the Agrosmart can't connect to the supplied network, you can check two thing:
 
-    - The supplied Wi-Fi network is 5GHz and it's not separated from the 2.4GHz. In there are two solutions:
-        - Use an ESP32 that supports the 5GHZ Wi-Fi like the ESP32-C5
-        - Separate the 2.4GHZ and the 5GHZ by giving them two different SSID then connect the phone to the 2.4GHz one
-          before
-          starting the pairing process
-    - The Wi-Fi is too far from the Agrosmart. Use a Wi-Fi extender or build an antenna to help gaining signal
-      if possible
+   - The supplied Wi-Fi network is 5GHz and it's not separated from the 2.4GHz. In there are two solutions:
+     - Use an ESP32 that supports the 5GHZ Wi-Fi like the ESP32-C5
+     - Separate the 2.4GHZ and the 5GHZ by giving them two different SSID then connect the phone to the 2.4GHz one
+       before
+       starting the pairing process
+   - The Wi-Fi is too far from the Agrosmart. Use a Wi-Fi extender or build an antenna to help gaining signal
+     if possible

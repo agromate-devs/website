@@ -17,7 +17,7 @@ as they are big enough. The values below assume a pot or trough of about 2 liter
 **Difficulty**: 1/5 (very easy).
 
 | Field                     | Recommended value                   | Why                                                                                                            |
-|---------------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | Lettuce is grown for its leaves: white light, rich in blue, keeps it compact.                                  |
 | `lightDuration`           | 14 hours (07:00–21:00)              | 14 hours give good growth; much longer days, together with heat, make lettuce bolt (flower and turn bitter).   |
 | `lightIntensity`          | 6                                   | Lettuce needs less light than fruiting plants; too much light and heat favor bolting.                          |

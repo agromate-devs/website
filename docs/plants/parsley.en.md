@@ -18,7 +18,7 @@ has a long taproot.
 **Difficulty**: 2/5 (easy).
 
 | Field                     | Recommended value                   | Why                                                                                  |
-|---------------------------|-------------------------------------|--------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------ |
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | Leafy herb: white light keeps the plant compact and dark green.                      |
 | `lightDuration`           | 14 hours (07:00–21:00)              | 14 hours give steady growth of new leaves.                                           |
 | `lightIntensity`          | 7                                   | Medium-high: parsley tolerates partial shade but grows faster with good light.       |

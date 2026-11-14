@@ -17,7 +17,7 @@ greenhouse: normal varieties grow over 1.5 m. The values below assume one plant 
 **Difficulty**: 3/5 (medium).
 
 | Field                     | Recommended value                    | Why                                                                                                                                                                        |
-|---------------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Purple — `4286578816` (`0xFF800080`) | Purple (red + blue): red drives flowering and fruit set, blue avoids leggy stems.                                                                                          |
 | `lightDuration`           | 16 hours (06:00–22:00)               | 16 hours: tomatoes are among the most light-hungry vegetables. Don't go over 18 hours, leaves turn yellow without a dark period.                                           |
 | `lightIntensity`          | 10                                   | Maximum: with too little light the plant flowers poorly and drops its flowers.                                                                                             |
