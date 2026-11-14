@@ -1,8 +1,8 @@
 ---
 title: App overview
-description: Features of the Agromate mobile app.
-section: Mobile app
-section_order: 5
+description: Features of the Agromate mobile mobile_app.
+section: Mobile App
+section_order: 4
 order: 8
 ---
 
@@ -22,7 +22,7 @@ to pair an Agrosmart, choose what it grows and control it remotely.
 Once logged in, the app is organized in five tabs reachable from the bottom navigation bar:
 
 | Tab          | What it does                                                        |
-| ------------ | ------------------------------------------------------------------- |
+|--------------|---------------------------------------------------------------------|
 | **Home**     | Your Agrosmarts with their latest readings                          |
 | **Webcam**   | Live view of the webcams watching your plants                       |
 | **Search**   | The plant catalog: browse, add and edit plants, start a new pairing |
@@ -124,7 +124,7 @@ How often to humidify. Like the irrigation frequency, the slider works in two sc
 
 ### Atmosphere & light
 
-<!-- SCREENSHOT: /docs-assets/app/atmosphere-light.png — atmosphere & light section -->
+<!-- SCREENSHOT: /docs-assets/mobile_app/atmosphere-light.png — atmosphere & light section -->
 
 #### Temperature Range
 
@@ -162,7 +162,7 @@ The predominant color (wavelength) of the light, chosen among **White**, **Red**
 > Red and blue are the wavelengths plants use the most for photosynthesis: red light favors flowering, blue light
 > favors leaf growth.
 
-<!-- SCREENSHOT: /docs-assets/app/light-color.png — light duration and color picker -->
+<!-- SCREENSHOT: /docs-assets/mobile_app/light-color.png — light duration and color picker -->
 
 ### Saving
 
@@ -183,7 +183,7 @@ Used to add a new plant to the catalog or to edit an existing one. It contains:
 Tap **Add plant to database** (or **Update plant to database** when editing) to save, or **Cancel** to discard the
 changes.
 
-<!-- SCREENSHOT: /docs-assets/app/plant-editor.png — plant editor -->
+<!-- SCREENSHOT: /docs-assets/mobile_app/plant-editor.png — plant editor -->
 
 ## Notifications
 

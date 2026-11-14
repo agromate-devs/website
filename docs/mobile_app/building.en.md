@@ -1,8 +1,8 @@
 ---
-title: Building the app
+title: Building the Mobile App
 description: Build the Agromate mobile app from source and configure its environment.
 section: Getting started
-section_order: 5
+section_order: 4
 order: 13
 ---
 
@@ -154,7 +154,7 @@ flutter run --release    # release build on the device
 To produce an installable package:
 
 ```bash
-flutter build apk --release      # Android APK, in build/app/outputs/flutter-apk/
+flutter build apk --release      # Android APK, in build/mobile_app/outputs/flutter-apk/
 flutter build appbundle          # Android App Bundle, for the Play Store
 flutter build ipa                # iOS, requires a configured Apple signing team
 ```

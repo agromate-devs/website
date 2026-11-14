@@ -2,7 +2,7 @@
 title: Basilico
 description: Parametri della pianta predefinita basilico e come sono stati scelti.
 section: Piante
-section_order: 4
+section_order: 5
 order: 21
 ---
 
@@ -15,7 +15,7 @@ Il basilico (_Ocimum basilicum_) è un'aromatica da foglia che ha bisogno di mol
 presuppongono un basilico coltivato in un vaso da circa 2 litri, in casa o sul balcone.
 
 | Campo                     | Valore consigliato                                         | Perché                                                                                                                            |
-| ------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------------|------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | `lightColor`              | Bianco a spettro pieno, con una buona quota di blu e rosso | Il blu mantiene la pianta compatta, il rosso guida la fotosintesi.                                                                |
 | `lightDuration`           | 14 ore                                                     | Sufficienti per una crescita vigorosa senza stress; all'aperto d'estate il basilico riceve 12–14 ore.                             |
 | `lightIntensity`          | 8-10                                                       | Il basilico ama la luce forte: con poca luce si allunga e perde aroma.                                                            |
@@ -29,7 +29,8 @@ presuppongono un basilico coltivato in un vaso da circa 2 litri, in casa o sul b
 
 ## Irrigazione
 
-Il basilico usa l'**irrigazione a tempo**, ma la frequenza e la quantità d'acqua possono cambiare nel tempo in base alle
+Il basilico usa l' **irrigazione a tempo**, ma la frequenza e la quantità d'acqua possono cambiare nel tempo in base
+alle
 condizioni meteo:
 
 - Evita di bagnare le foglie, soprattutto la sera, per prevenire le malattie fungine: avvia l'irrigazione/configura

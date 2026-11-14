@@ -2,7 +2,7 @@
 title: Fragola
 description: Parametri della pianta predefinita fragola e come sono stati scelti.
 section: Piante
-section_order: 4
+section_order: 5
 order: 28
 ---
 

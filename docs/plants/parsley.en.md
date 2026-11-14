@@ -2,20 +2,23 @@
 title: Parsley
 description: Parameters of the default parsley plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 26
 ---
 
 # Parsley
 
-This page explains the values of the default parsley plant. For the meaning and units of each field, see [Default plants](/docs?article=default_plants).
+This page explains the values of the default parsley plant. For the meaning and units of each field,
+see [Default plants](/docs?article=default_plants).
 
-Parsley (_Petroselinum crispum_) is a biennial herb grown for its leaves. The hardest part is germination, which can take 3–4 weeks; after that it is an easy plant. The values below assume a deep pot of about 2 liters, because parsley has a long taproot.
+Parsley (_Petroselinum crispum_) is a biennial herb grown for its leaves. The hardest part is germination, which can
+take 3–4 weeks; after that it is an easy plant. The values below assume a deep pot of about 2 liters, because parsley
+has a long taproot.
 
 **Difficulty**: 2/5 (easy).
 
 | Field                     | Recommended value                   | Why                                                                                  |
-| ------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------ |
+|---------------------------|-------------------------------------|--------------------------------------------------------------------------------------|
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | Leafy herb: white light keeps the plant compact and dark green.                      |
 | `lightDuration`           | 14 hours (07:00–21:00)              | 14 hours give steady growth of new leaves.                                           |
 | `lightIntensity`          | 7                                   | Medium-high: parsley tolerates partial shade but grows faster with good light.       |
@@ -32,5 +35,6 @@ Parsley (_Petroselinum crispum_) is a biennial herb grown for its leaves. The ha
 
 Parsley uses **time-based irrigation**.
 
-- During germination water more often, every 1–2 days (24–48 hours) with 100 ml: seeds that dry out even once often don't sprout. Go back to 3 days once the seedlings have a few true leaves.
+- During germination water more often, every 1–2 days (24–48 hours) with 100 ml: seeds that dry out even once often
+  don't sprout. Go back to 3 days once the seedlings have a few true leaves.
 - Harvest the outer stems first, so the plant keeps producing from the center.

@@ -2,20 +2,22 @@
 title: Mint
 description: Parameters of the default mint plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 22
 ---
 
 # Mint
 
-This page explains the values of the default mint plant. For the meaning and units of each field, see [Default plants](/docs?article=default_plants).
+This page explains the values of the default mint plant. For the meaning and units of each field,
+see [Default plants](/docs?article=default_plants).
 
-Mint (_Mentha spicata_) is a fast-growing aromatic herb that tolerates almost every mistake except dry soil. The values below assume mint grown in a pot of about 2 liters.
+Mint (_Mentha spicata_) is a fast-growing aromatic herb that tolerates almost every mistake except dry soil. The values
+below assume mint grown in a pot of about 2 liters.
 
 **Difficulty**: 1/5 (very easy).
 
 | Field                     | Recommended value                   | Why                                                                                                                  |
-| ------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+|---------------------------|-------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | Leafy plant: a full-spectrum white gives the balance of blue (compact leaves) and red (growth) it needs.             |
 | `lightDuration`           | 14 hours (07:00–21:00)              | 14 hours is a long summer day: mint grows bushy and aromatic.                                                        |
 | `lightIntensity`          | 7                                   | Medium-high: mint also grows in partial shade, but with more light the aroma is stronger.                            |
@@ -32,5 +34,6 @@ Mint (_Mentha spicata_) is a fast-growing aromatic herb that tolerates almost ev
 
 Mint uses **time-based irrigation**: frequent waterings keep the soil moist, which is what this plant needs most.
 
-- If the soil is still wet when the next irrigation comes, lengthen the interval to 3 days (72 hours); if the leaves droop before it, shorten it to 1 day (24 hours) and lower the quantity to 150 ml.
+- If the soil is still wet when the next irrigation comes, lengthen the interval to 3 days (72 hours); if the leaves
+  droop before it, shorten it to 1 day (24 hours) and lower the quantity to 150 ml.
 - Mint spreads with runners: grow it alone in its pot, it would choke other plants.

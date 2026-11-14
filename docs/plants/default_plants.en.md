@@ -2,7 +2,7 @@
 title: Default plants
 description: How the fields of the default plants in the database were filled in, and what still needs to change.
 section: Plants
-section_order: 4
+section_order: 5
 order: 20
 ---
 
@@ -41,7 +41,7 @@ it.
 ```
 
 | Field                     | Unit / format              | How it is used                                                                                                                                                                                                                                                           |
-| ------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|---------------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `idSeed`                  | integer                    | Id of the plant inside the seed, **required** and unique. The seed uses it to tell whether the plant already exists. It is not the database id, which is assigned by the database.                                                                                       |
 | `lastUpdate`              | seed version               | **Required**, only in the seed file (not stored in the database). Version of the seed in which the plant was last added or changed.                                                                                                                                      |
 | `docsArticle`             | page name                  | **Required** for default plants. Name of the page that documents the plant on this site, the file name of `docs/plants/<docsArticle>.{en,it}.md` without the language (e.g. `basil`). Only lowercase letters, numbers, `-` and `_`. Plants added by users don't need it. |

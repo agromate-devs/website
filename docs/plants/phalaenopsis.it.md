@@ -2,20 +2,23 @@
 title: Orchidea Phalaenopsis
 description: Parametri della pianta predefinita orchidea Phalaenopsis e come sono stati scelti.
 section: Piante
-section_order: 4
+section_order: 5
 order: 31
 ---
 
 # Orchidea Phalaenopsis
 
-Questa pagina spiega i valori della pianta predefinita orchidea Phalaenopsis. Per il significato e le unità di ogni campo, vedi [Piante predefinite](/docs?article=default_plants).
+Questa pagina spiega i valori della pianta predefinita orchidea Phalaenopsis. Per il significato e le unità di ogni
+campo, vedi [Piante predefinite](/docs?article=default_plants).
 
-L'orchidea farfalla (_Phalaenopsis_) è un'epifita: in natura cresce sulla corteccia degli alberi, con le radici all'aria. Tenerla in vita non è difficile, farla rifiorire sì. I valori qui sotto presuppongono una pianta in un vaso trasparente da 12 cm riempito di bark (corteccia), con fori di drenaggio.
+L'orchidea farfalla (_Phalaenopsis_) è un'epifita: in natura cresce sulla corteccia degli alberi, con le radici
+all'aria. Tenerla in vita non è difficile, farla rifiorire sì. I valori qui sotto presuppongono una pianta in un vaso
+trasparente da 12 cm riempito di bark (corteccia), con fori di drenaggio.
 
 **Difficoltà**: 4/5 (difficile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                               |
-| ------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+|---------------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | Luce bianca; l'orchidea ha bisogno di poca luce e lo spettro conta meno dell'evitare gli eccessi.                    |
 | `lightDuration`           | 12 ore (08:00–20:00)                 | 12 ore, come la giornata equatoriale delle sue foreste d'origine.                                                    |
 | `lightIntensity`          | 4                                    | Bassa: vive all'ombra della chioma della foresta e una luce forte brucia le foglie (chiazze giallo-marroni).         |
@@ -30,12 +33,18 @@ L'orchidea farfalla (_Phalaenopsis_) è un'epifita: in natura cresce sulla corte
 
 ## Irrigazione
 
-L'orchidea usa l'**irrigazione a tempo**: la sonda del terreno non funziona nel bark (pezzi grossi con aria in mezzo), quindi la lettura non avrebbe senso.
+L'orchidea usa l'**irrigazione a tempo**: la sonda del terreno non funziona nel bark (pezzi grossi con aria in mezzo),
+quindi la lettura non avrebbe senso.
 
-- Guarda le radici attraverso il vaso trasparente: grigio-argento significa asciutte, verde brillante bagnate. Se sono ancora verdi quando arriva l'irrigazione successiva, allunga l'intervallo a 10 giorni (240 ore).
-- Non lasciare mai acqua al centro della rosetta di foglie (il colletto): provoca il marciume del colletto, che uccide la pianta.
+- Guarda le radici attraverso il vaso trasparente: grigio-argento significa asciutte, verde brillante bagnate. Se sono
+  ancora verdi quando arriva l'irrigazione successiva, allunga l'intervallo a 10 giorni (240 ore).
+- Non lasciare mai acqua al centro della rosetta di foglie (il colletto): provoca il marciume del colletto, che uccide
+  la pianta.
 
 ## Note di coltivazione
 
-- L'**umidificazione** qui è **a tempo** per mostrare l'altra modalità: cicli brevi danno l'umidità che piace all'orchidea mantenendo le foglie asciutte per la maggior parte del tempo. Se preferisci, passa alla modalità a soglia dall'app e la pianta userà `targetHumidity` (60 %).
-- **Rifioritura**: dopo la fioritura, qualche settimana con notti intorno ai 16–18 °C (circa 5 °C più fredde del giorno) fa spuntare un nuovo stelo floreale. La serra non raffredda, quindi in autunno mettila in una stanza più fresca.
+- L' **umidificazione** qui è **a tempo** per mostrare l'altra modalità: cicli brevi danno l'umidità che piace
+  all'orchidea mantenendo le foglie asciutte per la maggior parte del tempo. Se preferisci, passa alla modalità a soglia
+  dall'app e la pianta userà `targetHumidity` (60 %).
+- **Rifioritura**: dopo la fioritura, qualche settimana con notti intorno ai 16–18 °C (circa 5 °C più fredde del giorno)
+  fa spuntare un nuovo stelo floreale. La serra non raffredda, quindi in autunno mettila in una stanza più fresca.

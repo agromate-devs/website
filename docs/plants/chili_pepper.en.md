@@ -2,7 +2,7 @@
 title: Chili Pepper
 description: Parameters of the default chili pepper plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 30
 ---
 

@@ -2,14 +2,15 @@
 title: Piante predefinite
 description: Come sono stati compilati i campi delle piante predefinite nel database e cosa resta da modificare.
 section: Piante
-section_order: 4
+section_order: 5
 order: 20
 ---
 
 # Piante predefinite
 
 Il server Agromate include un catalogo di piante predefinite, definito in `prisma/seed/plants.json` nel repository del
-server e aggiunto automaticamente al database a ogni avvio del server (vedi la sezione _Catalogo delle piante_ più sotto). Quando scegli
+server e aggiunto automaticamente al database a ogni avvio del server (vedi la sezione _Catalogo delle piante_ più
+sotto). Quando scegli
 una pianta dal catalogo nell'app, i suoi valori diventano la configurazione iniziale dell'Agrosmart: puoi comunque
 modificarli dalle impostazioni di cura della pianta.
 
@@ -27,13 +28,19 @@ usa il firmware.
 {
   "version": 2,
   "plants": [
-    { "idSeed": 1, "lastUpdate": 2, "name": "Basil", "docsArticle": "basil", "...": "..." }
+    {
+      "idSeed": 1,
+      "lastUpdate": 2,
+      "name": "Basil",
+      "docsArticle": "basil",
+      "...": "..."
+    }
   ]
 }
 ```
 
 | Campo                     | Unità / formato                      | Come viene usato                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `idSeed`                  | intero                               | Id della pianta dentro il seed, **obbligatorio** e univoco. Il seed lo usa per capire se la pianta esiste già. Non è l'id del database, che viene assegnato dal database.                                                                                                                                                                                                                                                                                                    |
 | `lastUpdate`              | versione del seed                    | **Obbligatorio**, solo nel file di seed (non viene salvato nel database). Versione del seed in cui la pianta è stata aggiunta o modificata l'ultima volta.                                                                                                                                                                                                                                                                                                                   |
 | `docsArticle`             | nome della pagina                    | **Obbligatorio** per le piante predefinite. Nome della pagina che documenta la pianta su questo sito, cioè il nome del file `docs/plants/<docsArticle>.{en,it}.md` senza la lingua (es. `basil`). Solo lettere minuscole, numeri, `-` e `_`. Il server restituisce solo il nome e l'app costruisce il link `https://agromate-devs.github.io/website/docs?article=<docsArticle>` per il pulsante _Read the full guide_. Le piante aggiunte dagli utenti non ne hanno bisogno. |
@@ -135,8 +142,8 @@ saltare tutte le successive.
 docker exec agromate npm run seed -- --all --yes
 ```
 
-**Forzare l'aggiornamento**: `--force` ignora la versione del seed salvata nel database. Controlla tutte le piante
-(come `--all`), parte anche se `plants.json` è più vecchio della versione salvata e alla fine sovrascrive la versione
+**Forzare l'aggiornamento**: `--force` ignora la versione del seed salvata nel database. Controlla tutte le piante (come
+`--all`), parte anche se `plants.json` è più vecchio della versione salvata e alla fine sovrascrive la versione
 salvata con quella di `plants.json`, anche se è più bassa. Usalo ad esempio per tornare a un catalogo precedente o
 quando la versione salvata è sbagliata. Abbinalo a `--yes` per aggiornare tutte le piante modificate senza conferma:
 
@@ -160,14 +167,16 @@ salvata nel database.
 1. Aumenta di uno la `version` in cima a `prisma/seed/plants.json`. Fallo una volta per ogni rilascio del catalogo,
    anche se aggiungi o modifichi più di una pianta.
 2. Per aggiungere una pianta, aggiungi un oggetto a `plants` con un `idSeed` nuovo e univoco e tutti i campi descritti
-   sopra, compreso `docsArticle` con il nome della pagina che scrivi nell'ultimo passo. Per modificare una pianta, cambia i suoi campi e mantieni il suo `idSeed`. In entrambi i casi imposta
+   sopra, compreso `docsArticle` con il nome della pagina che scrivi nell'ultimo passo. Per modificare una pianta,
+   cambia i suoi campi e mantieni il suo `idSeed`. In entrambi i casi imposta
    `lastUpdate` alla nuova `version`: il seed controlla solo le piante con `lastUpdate` maggiore della versione già
    applicata al database.
 3. Metti l'immagine in `public/plants/` sul server, con lo stesso nome usato in `image`.
 4. Compila i valori con lo stesso approccio usato per il [basilico](/docs?article=basil): parti dalle esigenze
    agronomiche della pianta e convertile nelle unità della tabella in cima a questa pagina.
 5. Controlla il file con `npm run seed:validate` nel repository del server. Segnala come errori i campi obbligatori
-   mancanti (compreso `docsArticle`), i valori fuori dagli intervalli della tabella, un `lastUpdate` maggiore di `version`, gli `idSeed`
+   mancanti (compreso `docsArticle`), i valori fuori dagli intervalli della tabella, un `lastUpdate` maggiore di
+   `version`, gli `idSeed`
    duplicati e le piante con entrambi o nessuno tra `wateringFrequency` e `soilMoisture`, oppure con
    `humidificationDuration` impostato senza `humidificationFrequency` (e viceversa). Campi sconosciuti, nomi duplicati
    e immagini mancanti sono solo avvisi.

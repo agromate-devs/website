@@ -2,7 +2,7 @@
 title: Cherry Tomato
 description: Parameters of the default cherry tomato plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 29
 ---
 

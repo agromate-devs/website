@@ -2,7 +2,7 @@
 title: Lettuce
 description: Parameters of the default lettuce plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 23
 ---
 

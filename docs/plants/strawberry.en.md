@@ -2,7 +2,7 @@
 title: Strawberry
 description: Parameters of the default strawberry plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 28
 ---
 

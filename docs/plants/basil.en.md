@@ -2,7 +2,7 @@
 title: Basil
 description: Parameters of the default basil plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 21
 ---
 
@@ -15,7 +15,7 @@ Basil (_Ocimum basilicum_) is a leafy herb that needs plenty of heat and light. 
 a pot of about 2 liters, indoors or on a balcony.
 
 | Field                     | Recommended value                                      | Why                                                                                                                         |
-| ------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+|---------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | `lightColor`              | Full-spectrum white, with a good share of blue and red | Blue keeps the plant compact, red drives photosynthesis.                                                                    |
 | `lightDuration`           | 14 hours                                               | Enough for vigorous growth without stress; outdoors in summer basil gets 12–14 hours.                                       |
 | `lightIntensity`          | 8-10                                                   | Basil loves strong light: With low light it stretches and loses aroma.                                                      |

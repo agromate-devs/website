@@ -2,7 +2,7 @@
 title: Phalaenopsis Orchid
 description: Parameters of the default Phalaenopsis orchid plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 31
 ---
 

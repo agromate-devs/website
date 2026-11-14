@@ -2,20 +2,22 @@
 title: Aloe vera
 description: Parameters of the default aloe vera plant and how they were chosen.
 section: Plants
-section_order: 4
+section_order: 5
 order: 25
 ---
 
 # Aloe vera
 
-This page explains the values of the default aloe vera plant. For the meaning and units of each field, see [Default plants](/docs?article=default_plants).
+This page explains the values of the default aloe vera plant. For the meaning and units of each field,
+see [Default plants](/docs?article=default_plants).
 
-Aloe vera is a succulent from arid climates: it stores water in its fleshy leaves and dies more often from too much water than from too little. The values below assume a 2 liter pot with cactus soil and a drainage hole.
+Aloe vera is a succulent from arid climates: it stores water in its fleshy leaves and dies more often from too much
+water than from too little. The values below assume a 2 liter pot with cactus soil and a drainage hole.
 
 **Difficulty**: 1/5 (very easy).
 
 | Field                     | Recommended value                   | Why                                                                                    |
-| ------------------------- | ----------------------------------- | -------------------------------------------------------------------------------------- |
+|---------------------------|-------------------------------------|----------------------------------------------------------------------------------------|
 | `lightColor`              | White — `4294967295` (`0xFFFFFFFF`) | White light; aloe is not grown for flowers, so a red-rich spectrum is not needed.      |
 | `lightDuration`           | 12 hours (07:00–19:00)              | 12 hours of strong light are enough to keep the leaves compact and upright.            |
 | `lightIntensity`          | 10                                  | Maximum: with little light aloe stretches and the leaves bend down.                    |
@@ -30,7 +32,8 @@ Aloe vera is a succulent from arid climates: it stores water in its fleshy leave
 
 ## Irrigation
 
-Aloe uses **time-based irrigation**: a soil moisture threshold low enough for a succulent is at the edge of the probe's accuracy, so a fixed interval is more reliable.
+Aloe uses **time-based irrigation**: a soil moisture threshold low enough for a succulent is at the edge of the probe's
+accuracy, so a fixed interval is more reliable.
 
 - In winter lengthen the interval to 3–4 weeks (504–672 hours).
 - Soft, translucent leaves mean too much water: stop watering and let the soil dry.

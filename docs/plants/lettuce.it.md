@@ -2,7 +2,7 @@
 title: Lattuga
 description: Parametri della pianta predefinita lattuga e come sono stati scelti.
 section: Piante
-section_order: 4
+section_order: 5
 order: 23
 ---
 
