@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { Marked } from 'marked';
 import markedAlert from 'marked-alert';
@@ -65,14 +65,23 @@ const current_locale = i18n.global.locale;
 
 // ?article=xxx is the file name without language and extension, the introduction by default
 const current_article = computed(() => route.query.article || 'index');
-const article_html = computed(() => {
-  const find_article = (locale: string) =>
-    docs.find((doc) => doc.name.split('.')[0] === current_article.value && doc.locale === locale);
-  // Render the markdown of the selected article(improve first contentful paint compared to rendering all the markdown at startup)
-  let doc = find_article(current_locale.value);
 
-  if (!doc) doc = find_article('en');
+const find_article = (locale: string) =>
+  docs.find((doc) => doc.name.split('.')[0] === current_article.value && doc.locale === locale);
+
+// Open/closed state of every sidebar section, kept across article changes
+const open_sections = reactive(new Map<string, boolean>());
+
+function onSectionToggle(section: string, event: Event) {
+  open_sections.set(section, (event.target as HTMLDetailsElement).open);
+}
+
+const article_html = computed(() => {
+  // Render the markdown of the selected article(improve first contentful paint compared to rendering all the markdown at startup)
+  const doc = find_article(current_locale.value) ?? find_article('en');
   if (!doc) return;
+  open_sections.set(doc.frontmatter.section, true); // Open the relative section of the article
+
   const html = marked.parse(doc.content.replace(/^---[\s\S]*?---\s*/, ''), { async: false }); // Remove frontmatter since marked doesn't parse it
   // Wrap every code block with a copy button (handled by onArticleClick)
   const copy_button = `<button type="button" class="copy-code" aria-label="${t('docs.copyCodeLabel')}">${t('docs.copyCode')}</button>`;
@@ -87,7 +96,7 @@ const article_html = computed(() => {
 
 const copy_timers = new WeakMap<HTMLElement, number>();
 
-async function onArticleClick(event: MouseEvent) {
+async function onCopyClick(event: MouseEvent) {
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('.copy-code');
   const code = button?.parentElement?.querySelector('pre code');
   if (!button || !code) return;
@@ -207,7 +216,13 @@ onBeforeUnmount(() => {
           </button>
         </div>
         <nav class="space-y-1 lg:sticky lg:top-24" :aria-label="$t('docs.index')">
-          <details v-for="section in sections" :key="section" class="group" open>
+          <details
+            v-for="section in sections"
+            :key="section"
+            class="group"
+            :open="open_sections.get(section) ?? false"
+            @toggle="onSectionToggle(section, $event)"
+          >
             <summary
               class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 font-semibold text-leaf-950 hover:bg-leaf-100"
             >
@@ -248,11 +263,7 @@ onBeforeUnmount(() => {
             <p class="text-sm">{{ $t('docs.draftWarning') }}</p>
           </div>
         </div>
-        <article
-          class="doc-content wrap-break-word"
-          v-html="article_html"
-          @click="onArticleClick"
-        />
+        <article class="doc-content wrap-break-word" v-html="article_html" @click="onCopyClick" />
       </div>
     </div>
   </div>
