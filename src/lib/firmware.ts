@@ -1,7 +1,5 @@
 import type { FirmwareManifest, FirmwarePart } from '../../env';
 
-export type { FirmwareManifest, FirmwarePart };
-
 const base = `${import.meta.env.BASE_URL}firmware/`;
 
 /** Load the manifest downloaded at build time, or null when no firmware is bundled. */
