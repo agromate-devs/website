@@ -103,12 +103,12 @@ export default {
   flasher: {
     title: 'Flash the firmware from your browser',
     intro:
-      'Connect the Agrosmart to your computer with a USB cable and install the standard firmware with nothing to install: flashing happens right in the browser through Web Serial.',
+      'Connect the Agrosmart to your computer with a USB cable and install the standard firmware, no need to install ESP-IDF or any other dependency',
     unsupported:
       'Your browser does not support Web Serial. Use Chrome, Edge or Opera on desktop, or flash the firmware manually with esptool.',
     firmwareTitle: 'Standard firmware',
     firmwareText:
-      'The latest official release, built with every Agrosmart option at its default value (the pins, sensors and 30-LED strip described in the documentation).',
+      'The latest official release, built with every option at its default value.',
     loading: 'Loading firmware information…',
     noFirmware: 'No firmware is available right now. You can download it from the',
     releases: 'GitHub releases',

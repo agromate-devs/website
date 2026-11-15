@@ -157,7 +157,6 @@ onBeforeUnmount(() => void disconnect());
 
 <template>
   <section class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:py-24">
-    <p class="font-mono text-sm text-leaf-600">esptool-js · Web Serial</p>
     <h1 class="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
       {{ t('flasher.title') }}
     </h1>
