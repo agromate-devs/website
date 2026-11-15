@@ -46,18 +46,9 @@ draft: true
 > [!TIP]
 > Use spaced-out numbers for `order` (10, 11, 20, 30...) so you can insert new pages without renumbering everything.
 
-## Translations
+## Interface texts
 
-The site is available in Italian and English. The English version is `page.en.md`; the Italian translation goes next to
-it as `page.it.md` and keeps the same address.
-
-- The translation inherits `order` and `draft` from the English version: you only need to translate `title`,
-  `description` and `section`.
-- If a page has no translation, the English version is shown with a notice.
-- Links between pages always point to the English file (`../hardware/components.en.md`): the site opens the version in
-  the current language.
-
-Interface texts (menus, buttons, labels) live in `src/locales/it.ts` and `src/locales/en.ts`.
+Interface texts (menus, buttons, labels) live in `src/locales/en.ts`.
 
 ## Supported Markdown
 

@@ -1,16 +1,9 @@
-import type it from './it';
-
 export default {
   meta: {
     homeTitle: 'Agromate — The smart greenhouse on ESP32',
     notFoundTitle: 'Page not found · Agromate',
     flasherTitle: 'Firmware flasher · Agromate',
     docTitle: '{title} · Agromate Documentation',
-  },
-  language: {
-    label: 'Language',
-    it: 'Italiano',
-    en: 'English',
   },
   nav: {
     main: 'Main',
@@ -180,4 +173,4 @@ export default {
     text: 'The page you are looking for doesn’t exist or has been moved.',
     back: 'Back to home',
   },
-} satisfies typeof it;
+};

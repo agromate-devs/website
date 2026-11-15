@@ -5,7 +5,6 @@ import { useI18n } from 'vue-i18n';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline';
 import GithubIcon from './GithubIcon.vue';
 import AgromateLogo from './AgromateLogo.vue';
-import LanguageSwitcher from './LanguageSwitcher.vue';
 import { links } from '@/site';
 
 const { t } = useI18n();
@@ -46,7 +45,6 @@ const nav = computed(() => [
         >
           {{ item.label }}
         </RouterLink>
-        <LanguageSwitcher class="ml-2" />
         <a
           :href="links.org"
           target="_blank"
@@ -59,7 +57,6 @@ const nav = computed(() => [
       </nav>
 
       <div class="flex items-center gap-2 md:hidden">
-        <LanguageSwitcher />
         <button
           type="button"
           class="rounded-lg p-2 text-leaf-900 hover:bg-leaf-100"

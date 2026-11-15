@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Marketing site + documentation for **Agromate**, an open source ESP32 smart greenhouse (device: "Agrosmart"). Vue 3 + Vite + TypeScript SPA, styled with Tailwind CSS v4, bilingual (English/Italian). Related repos are linked from `src/site.ts` (firmware, mobile app).
+Marketing site + documentation for **Agromate**, an open source ESP32 smart greenhouse (device: "Agrosmart"). Vue 3 + Vite + TypeScript SPA, styled with Tailwind CSS v4. `main` is **English-only**; the Italian translation (`src/locales/it.ts`, `docs/**/*.it.md`, `LanguageSwitcher.vue`, locale detection in `src/i18n.ts`) lives on the local, unpushed `i18n` branch, ready to be merged back. Related repos are linked from `src/site.ts` (firmware, mobile app).
 
 ## Commands
 
@@ -23,7 +23,7 @@ There is no test suite. Node `^22.18.0 || >=24.12.0`. Prettier: single quotes, s
 
 - `src/main.ts` installs `i18n` then `router`. `App.vue` is a shell (header / `RouterView` / footer) that syncs `<html lang>` to the locale. Views set `document.title` themselves via `watchEffect` + `t('meta.*')`.
 - **Routing** (`src/router.ts`): `/` → `HomeView` (composed of section components in `src/components/`), `/docs/:slug*` → `DocsView` (lazy), catch-all → `NotFoundView`. Hash scrolling offsets 88px for the sticky header.
-- **i18n** (`src/i18n.ts`): vue-i18n Composition API only (legacy flags are disabled in `vite.config.ts`). Locale = localStorage `agromate-locale` → browser language → `en`. Change locale with `setLocale()`. `src/locales/en.ts` is typed against `it.ts` (`typeof it`), so **every UI string key must exist in both files** or type-check fails.
+- **i18n** (`src/i18n.ts`): vue-i18n Composition API only (legacy flags are disabled in `vite.config.ts`), currently with the single locale `en`. UI strings still go through `t()` in `src/locales/en.ts` so the `i18n` branch can be merged back; on that branch `en.ts` is typed against `it.ts`, so every key must exist in both.
 - **Theme**: custom Tailwind palettes (`leaf`, `soil`, `sun`, `water`) and fonts are defined in `@theme` in `src/assets/main.css`; use those instead of default Tailwind colors. Rendered docs are styled via the `.doc-content` class there.
 
 ### Documentation system
