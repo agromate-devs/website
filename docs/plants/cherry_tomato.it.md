@@ -17,7 +17,7 @@ Robin'): le varietà normali superano 1,5 m. I valori qui sotto presuppongono un
 **Difficoltà**: 3/5 (media).
 
 | Campo                     | Valore consigliato                  | Perché                                                                                                                                                                                            |
-|---------------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Viola — `4286578816` (`0xFF800080`) | Viola (rosso + blu): il rosso guida fioritura e allegagione, il blu evita fusti filati.                                                                                                           |
 | `lightDuration`           | 16 ore (06:00–22:00)                | 16 ore: il pomodoro è tra gli ortaggi più esigenti di luce. Non superare le 18 ore, senza un periodo di buio le foglie ingialliscono.                                                             |
 | `lightIntensity`          | 10                                  | Massima: con poca luce la pianta fiorisce poco e lascia cadere i fiori.                                                                                                                           |

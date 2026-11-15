@@ -2,6 +2,7 @@ export default {
   meta: {
     homeTitle: 'Agromate — La serra smart su ESP32',
     notFoundTitle: 'Pagina non trovata · Agromate',
+    flasherTitle: 'Flasher firmware · Agromate',
     docTitle: '{title} · Documentazione Agromate',
   },
   language: {
@@ -17,6 +18,7 @@ export default {
     docs: 'Documentazione',
     openMenu: 'Apri menu',
     closeMenu: 'Chiudi menu',
+    flasher: 'Flasher',
   },
   hero: {
     title: 'La serra smart che si prende cura {highlight}.',
@@ -102,6 +104,49 @@ export default {
     app: 'App mobile',
     org: 'agromate-devs su GitHub',
     copyright: '© {year} Agromate · Progetto open source',
+  },
+  flasher: {
+    title: 'Carica il firmware dal browser',
+    intro:
+      'Collega l’Agrosmart al computer con un cavo USB e installa il firmware standard senza installare nulla: il caricamento avviene direttamente dal browser tramite Web Serial.',
+    unsupported:
+      'Il tuo browser non supporta Web Serial. Usa Chrome, Edge oppure Opera su desktop, o carica il firmware manualmente con esptool.',
+    firmwareTitle: 'Firmware standard',
+    firmwareText:
+      'L’ultima release ufficiale, compilata con tutte le opzioni Agrosmart ai valori predefiniti (pin, sensori e striscia da 30 LED descritti nella documentazione).',
+    loading: 'Caricamento delle informazioni sul firmware…',
+    noFirmware: 'Nessun firmware disponibile al momento. Puoi scaricarlo dalle',
+    releases: 'release su GitHub',
+    version: 'Versione',
+    chip: 'Chip',
+    flash: 'Flash',
+    published: 'Pubblicata il',
+    releaseNotes: 'Note di rilascio',
+    customFirmware: 'Pin o chip diversi? Compila il tuo firmware',
+    connectTitle: 'Collega la scheda',
+    connectText:
+      'Collega l’ESP32 via USB e scegli la sua porta seriale. Se la scheda non viene rilevata, tieni premuto il pulsante BOOT mentre premi RESET e riprova.',
+    connect: 'Connetti',
+    connecting: 'Connessione…',
+    disconnect: 'Disconnetti',
+    wrongChip:
+      'La scheda collegata è un {chip}, ma questo firmware è per {expected}. Compila il firmware per il tuo chip.',
+    flashTitle: 'Carica il firmware',
+    erase: 'Cancella tutta la flash prima di caricare',
+    eraseHint:
+      'Consigliato alla prima installazione o se hai problemi. Rimuove le credenziali Wi‑Fi e l’abbinamento: dovrai associare di nuovo l’Agrosmart.',
+    flashButton: 'Carica il firmware',
+    flashing: 'Caricamento in corso…',
+    downloading: 'Download del firmware…',
+    erasing: 'Cancellazione della flash…',
+    writing: 'Scrittura di {part}…',
+    done: 'Completato',
+    doneText: 'Firmware caricato! L’Agrosmart si è riavviato. Ora puoi associarlo all’app:',
+    pairing: 'Abbinare l’Agrosmart',
+    errorPrefix: 'Errore',
+    log: 'Log',
+    troubleshooting: 'Preferisci la riga di comando o qualcosa non funziona?',
+    manual: 'Caricare il firmware con esptool',
   },
   docs: {
     index: 'Indice della documentazione',

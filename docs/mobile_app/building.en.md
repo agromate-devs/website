@@ -46,9 +46,10 @@ Create (or edit) `.env`:
 
 ```bash
 API_URL=http://your-server-ip:3000
-# Must be reachable by Agrosmart
+# Must be reachable by Agrosmart(can be a local IP)
 MQTT_URL=mqtt://your-server-ip:1883
-# The signaling server used by webcam viewer
+# The signaling server used by webcam viewer. Must be the same MQTT server configured on the server 
+# but the IP must be public in order to view the webcam outside the local network
 SIGNALING_SERVER_URL=mqtt://your-server-ip:1883
 ```
 

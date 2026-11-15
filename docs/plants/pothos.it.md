@@ -17,7 +17,7 @@ luce, aria secca e qualche annaffiatura dimenticata. I valori qui sotto presuppo
 **Difficoltà**: 1/5 (molto facile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                                       |
-|---------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | Pianta da fogliame: la luce bianca basta e mantiene il colore naturale delle foglie.                                         |
 | `lightDuration`           | 12 ore (08:00–20:00)                 | 12 ore, come la giornata tropicale delle sue foreste d'origine.                                                              |
 | `lightIntensity`          | 4                                    | Bassa: in natura cresce all'ombra degli alberi e una luce forte e diretta sbiadisce le foglie.                               |

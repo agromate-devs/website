@@ -20,7 +20,7 @@ miscela di torba e perlite (senza concime).
 **Difficoltà**: 5/5 (molto difficile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                                          |
-|---------------------------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | Luce bianca a spettro pieno: una buona luce fa diventare rosso l'interno delle trappole.                                        |
 | `lightDuration`           | 14 ore (07:00–21:00)                 | 14 ore, una giornata estiva nel suo habitat d'origine.                                                                          |
 | `lightIntensity`          | 10                                   | Massima: in natura cresce in pieno sole; con poca luce le trappole diventano lunghe, deboli e verdi.                            |

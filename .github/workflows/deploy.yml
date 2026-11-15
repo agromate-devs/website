@@ -26,6 +26,10 @@ jobs:
 
       - run: npm ci
 
+      # Bundle the latest firmware release (agromate-devs/agrosmart) for the web flasher (/flasher).
+      - name: Fetch firmware
+        run: npm run fetch-firmware
+
       - id: pages
         uses: actions/configure-pages@v6
 

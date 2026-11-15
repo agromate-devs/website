@@ -18,7 +18,7 @@ qui sotto presuppongono un vaso da circa 2 litri.
 **Difficoltà**: 4/5 (difficile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                               |
-|---------------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | La luce bianca mantiene i colori naturali del disegno delle foglie.                                                  |
 | `lightDuration`           | 12 ore (08:00–20:00)                 | 12 ore; le foglie seguono il ciclo giorno-notte, aprendosi con la luce e chiudendosi al buio.                        |
 | `lightIntensity`          | 3                                    | Molto bassa: una luce forte sbiadisce il disegno e brucia le foglie.                                                 |

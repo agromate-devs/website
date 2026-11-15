@@ -38,6 +38,9 @@ const year = new Date().getFullYear();
           <li>
             <RouterLink to="/docs" class="hover:text-white">{{ t('nav.docs') }}</RouterLink>
           </li>
+          <li>
+            <RouterLink to="/flasher" class="hover:text-white">{{ t('nav.flasher') }}</RouterLink>
+          </li>
         </ul>
       </div>
       <div>

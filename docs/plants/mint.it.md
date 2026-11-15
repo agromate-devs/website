@@ -17,7 +17,7 @@ valori qui sotto presuppongono una menta in un vaso da circa 2 litri.
 **Difficoltà**: 1/5 (molto facile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                                         |
-|---------------------------|--------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | Pianta da foglia: il bianco a spettro pieno dà il giusto equilibrio di blu (foglie compatte) e rosso (crescita).               |
 | `lightDuration`           | 14 ore (07:00–21:00)                 | 14 ore sono una lunga giornata estiva: la menta cresce folta e profumata.                                                      |
 | `lightIntensity`          | 7                                    | Medio-alta: la menta cresce anche a mezz'ombra, ma con più luce l'aroma è più intenso.                                         |

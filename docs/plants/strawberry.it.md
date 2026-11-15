@@ -18,7 +18,7 @@ vaso da circa 2–3 litri.
 **Difficoltà**: 3/5 (media).
 
 | Campo                     | Valore consigliato                  | Perché                                                                                                                       |
-|---------------------------|-------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Viola — `4286578816` (`0xFF800080`) | Viola (rosso + blu): il rosso stimola fioritura e fruttificazione, il blu mantiene la pianta compatta.                       |
 | `lightDuration`           | 14 ore (07:00–21:00)                | 14 ore: le varietà rifiorenti fioriscono con qualsiasi durata del giorno, ma più luce significa frutti più numerosi e dolci. |
 | `lightIntensity`          | 9                                   | Alta: la produzione di frutti richiede molta energia.                                                                        |

@@ -17,7 +17,7 @@ esterne appena sono abbastanza grandi. I valori qui sotto presuppongono un vaso 
 **Difficoltà**: 1/5 (molto facile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                                                   |
-|---------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | La lattuga si coltiva per le foglie: la luce bianca, ricca di blu, la mantiene compatta.                                                 |
 | `lightDuration`           | 14 ore (07:00–21:00)                 | 14 ore danno una buona crescita; giornate molto più lunghe, insieme al caldo, fanno andare la lattuga a seme (fiorisce e diventa amara). |
 | `lightIntensity`          | 6                                    | La lattuga ha bisogno di meno luce delle piante da frutto; troppa luce e calore favoriscono la salita a seme.                            |

@@ -17,7 +17,7 @@ che per troppo poca. I valori qui sotto presuppongono un vaso da 2 litri con ter
 **Difficoltà**: 1/5 (molto facile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                      |
-|---------------------------|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | Luce bianca; l'aloe non si coltiva per i fiori, quindi uno spettro ricco di rosso non serve.                |
 | `lightDuration`           | 12 ore (07:00–19:00)                 | 12 ore di luce forte bastano per mantenere le foglie compatte ed erette.                                    |
 | `lightIntensity`          | 10                                   | Massima: con poca luce l'aloe si allunga e le foglie si piegano verso il basso.                             |

@@ -11,6 +11,11 @@ const router = createRouter({
       component: () => import('./views/DocsView.vue'),
     },
     {
+      path: '/flasher',
+      name: 'flasher',
+      component: () => import('./views/FlasherView.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import('./views/NotFoundView.vue'),

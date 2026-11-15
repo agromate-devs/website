@@ -18,7 +18,7 @@ trasparente da 12 cm riempito di bark (corteccia), con fori di drenaggio.
 **Difficoltà**: 4/5 (difficile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                               |
-|---------------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | Luce bianca; l'orchidea ha bisogno di poca luce e lo spettro conta meno dell'evitare gli eccessi.                    |
 | `lightDuration`           | 12 ore (08:00–20:00)                 | 12 ore, come la giornata equatoriale delle sue foreste d'origine.                                                    |
 | `lightIntensity`          | 4                                    | Bassa: vive all'ombra della chioma della foresta e una luce forte brucia le foglie (chiazze giallo-marroni).         |

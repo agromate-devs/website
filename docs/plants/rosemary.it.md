@@ -18,7 +18,7 @@ terriccio sabbioso e ben drenato.
 **Difficoltà**: 2/5 (facile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                                                                                  |
-|---------------------------|--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | Luce bianca a spettro pieno, la più vicina al sole mediterraneo.                                                                                                        |
 | `lightDuration`           | 14 ore (07:00–21:00)                 | 14 ore, una giornata d'estate mediterranea.                                                                                                                             |
 | `lightIntensity`          | 9                                    | Alta: con poca luce il rosmarino cresce esile e perde l'aroma.                                                                                                          |

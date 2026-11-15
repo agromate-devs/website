@@ -158,15 +158,22 @@ The ready-to-flash firmware is published in the
 It is built for the **ESP32‑C5** with the default pins listed above: if you use another chip or
 other pins, build it yourself instead (see [Customizing the firmware](/docs?article=custom_firmware)).
 
-1. Download the `.zip` file from the latest release and extract it. It contains the four files
-   needed to flash the ESP32:
+### From the browser
 
-| File                   | Flash address |
-| ---------------------- | ------------- |
-| `bootloader.bin`       | `0x2000`      |
-| `partition-table.bin`  | `0x8000`      |
-| `ota_data_initial.bin` | `0xe000`      |
-| `agrosmart.bin`        | `0x10000`     |
+The easiest way is the [web flasher](/flasher): open it in Chrome, Edge or Opera on desktop, connect
+the ESP32 with a USB cable, click **Connect** and then **Flash firmware**. It always installs the
+latest release.
+
+### With esptool
+
+1. Download the four images of the latest release. Each one is flashed at its own address:
+
+| File                                    | Flash address |
+| --------------------------------------- | ------------- |
+| `agrosmart-esp32c5-bootloader.bin`      | `0x2000`      |
+| `agrosmart-esp32c5-partition-table.bin` | `0x8000`      |
+| `agrosmart-esp32c5-ota-data.bin`        | `0xe000`      |
+| `agrosmart-esp32c5-app.bin`             | `0x10000`     |
 
 2. Install [esptool](https://docs.espressif.com/projects/esptool/en/latest/) (requires Python):
 
@@ -177,16 +184,16 @@ other pins, build it yourself instead (see [Customizing the firmware](/docs?arti
 3. Connect the ESP32 to the computer with a USB cable and find its serial port: `/dev/ttyUSB*` or
    `/dev/ttyACM*` on Linux, `/dev/cu.usbserial-*` or `/dev/cu.usbmodem*` on macOS, `COM*` on Windows.
 
-4. From the folder where you extracted the zip, flash the four files (replace the port with yours):
+4. From the folder where you downloaded the files, flash them (replace the port with yours):
 
    ```bash
    esptool --chip esp32c5 -p /dev/ttyUSB0 -b 460800 \
      --before default-reset --after hard-reset \
      write-flash --flash-mode dio --flash-size 4MB --flash-freq 80m \
-     0x2000 bootloader.bin \
-     0x8000 partition-table.bin \
-     0xe000 ota_data_initial.bin \
-     0x10000 agrosmart.bin
+     0x2000 agrosmart-esp32c5-bootloader.bin \
+     0x8000 agrosmart-esp32c5-partition-table.bin \
+     0xe000 agrosmart-esp32c5-ota-data.bin \
+     0x10000 agrosmart-esp32c5-app.bin
    ```
 
    On Windows, write the command on a single line without the `\`.

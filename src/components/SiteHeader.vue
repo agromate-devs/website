@@ -21,6 +21,7 @@ const nav = computed(() => [
   { label: t('nav.features'), to: '/#features' },
   { label: t('nav.architecture'), to: '/#architecture' },
   { label: t('nav.docs'), to: '/docs' },
+  { label: t('nav.flasher'), to: '/flasher' },
 ]);
 </script>
 
@@ -39,7 +40,8 @@ const nav = computed(() => [
           :to="item.to"
           class="rounded-full px-3.5 py-2 text-sm font-medium text-leaf-900/75 transition hover:bg-leaf-100 hover:text-leaf-950"
           :class="{
-            'bg-leaf-100 text-leaf-950': item.to === '/docs' && route.path.startsWith('/docs'),
+            'bg-leaf-100 text-leaf-950':
+              item.to.startsWith('/') && !item.to.includes('#') && route.path.startsWith(item.to),
           }"
         >
           {{ item.label }}

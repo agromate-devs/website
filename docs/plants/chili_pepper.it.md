@@ -18,7 +18,7 @@ un vaso da circa 3 litri.
 **Difficoltà**: 3/5 (media).
 
 | Campo                     | Valore consigliato                  | Perché                                                                                                                                                                   |
-|---------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `lightColor`              | Viola — `4286578816` (`0xFF800080`) | Viola (rosso + blu) per sostenere la fioritura e la maturazione dei frutti.                                                                                              |
 | `lightDuration`           | 16 ore (06:00–22:00)                | 16 ore: il peperoncino cresce lentamente e le giornate lunghe lo accelerano.                                                                                             |
 | `lightIntensity`          | 10                                  | Massima: con poca luce la pianta si allunga e fiorisce tardi.                                                                                                            |

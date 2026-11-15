@@ -15,7 +15,7 @@ Il basilico (_Ocimum basilicum_) è un'aromatica da foglia che ha bisogno di mol
 presuppongono un basilico coltivato in un vaso da circa 2 litri, in casa o sul balcone.
 
 | Campo                     | Valore consigliato                                         | Perché                                                                                                                            |
-|---------------------------|------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `lightColor`              | Bianco a spettro pieno, con una buona quota di blu e rosso | Il blu mantiene la pianta compatta, il rosso guida la fotosintesi.                                                                |
 | `lightDuration`           | 14 ore                                                     | Sufficienti per una crescita vigorosa senza stress; all'aperto d'estate il basilico riceve 12–14 ore.                             |
 | `lightIntensity`          | 8-10                                                       | Il basilico ama la luce forte: con poca luce si allunga e perde aroma.                                                            |

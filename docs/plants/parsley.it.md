@@ -18,7 +18,7 @@ profondo da circa 2 litri, perché il prezzemolo ha una radice a fittone lunga.
 **Difficoltà**: 2/5 (facile).
 
 | Campo                     | Valore consigliato                   | Perché                                                                                                             |
-|---------------------------|--------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| ------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | `lightColor`              | Bianco — `4294967295` (`0xFFFFFFFF`) | Aromatica da foglia: la luce bianca mantiene la pianta compatta e di un verde intenso.                             |
 | `lightDuration`           | 14 ore (07:00–21:00)                 | 14 ore danno una crescita costante di nuove foglie.                                                                |
 | `lightIntensity`          | 7                                    | Medio-alta: il prezzemolo tollera la mezz'ombra ma cresce più velocemente con una buona luce.                      |

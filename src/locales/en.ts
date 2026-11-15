@@ -4,6 +4,7 @@ export default {
   meta: {
     homeTitle: 'Agromate — The smart greenhouse on ESP32',
     notFoundTitle: 'Page not found · Agromate',
+    flasherTitle: 'Firmware flasher · Agromate',
     docTitle: '{title} · Agromate Documentation',
   },
   language: {
@@ -19,6 +20,7 @@ export default {
     docs: 'Documentation',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    flasher: 'Flasher',
   },
   hero: {
     title: 'The smart greenhouse that takes care {highlight}.',
@@ -104,6 +106,49 @@ export default {
     app: 'Mobile app',
     org: 'agromate-devs on GitHub',
     copyright: '© {year} Agromate · Open source project',
+  },
+  flasher: {
+    title: 'Flash the firmware from your browser',
+    intro:
+      'Connect the Agrosmart to your computer with a USB cable and install the standard firmware with nothing to install: flashing happens right in the browser through Web Serial.',
+    unsupported:
+      'Your browser does not support Web Serial. Use Chrome, Edge or Opera on desktop, or flash the firmware manually with esptool.',
+    firmwareTitle: 'Standard firmware',
+    firmwareText:
+      'The latest official release, built with every Agrosmart option at its default value (the pins, sensors and 30-LED strip described in the documentation).',
+    loading: 'Loading firmware information…',
+    noFirmware: 'No firmware is available right now. You can download it from the',
+    releases: 'GitHub releases',
+    version: 'Version',
+    chip: 'Chip',
+    flash: 'Flash',
+    published: 'Published',
+    releaseNotes: 'Release notes',
+    customFirmware: 'Different pins or chip? Build your own firmware',
+    connectTitle: 'Connect the board',
+    connectText:
+      'Plug the ESP32 in over USB and pick its serial port. If the board is not detected, hold the BOOT button while pressing RESET and try again.',
+    connect: 'Connect',
+    connecting: 'Connecting…',
+    disconnect: 'Disconnect',
+    wrongChip:
+      'The connected board is an {chip}, but this firmware is for {expected}. Build the firmware for your chip.',
+    flashTitle: 'Flash the firmware',
+    erase: 'Erase the whole flash before writing',
+    eraseHint:
+      'Recommended on the first install or if something is wrong. It removes the Wi‑Fi credentials and the pairing: you will have to pair the Agrosmart again.',
+    flashButton: 'Flash firmware',
+    flashing: 'Flashing…',
+    downloading: 'Downloading firmware…',
+    erasing: 'Erasing flash…',
+    writing: 'Writing {part}…',
+    done: 'Done',
+    doneText: 'Firmware flashed! The Agrosmart has restarted. You can now pair it with the app:',
+    pairing: 'Pairing the Agrosmart',
+    errorPrefix: 'Error',
+    log: 'Log',
+    troubleshooting: 'Prefer the command line, or something is not working?',
+    manual: 'Flashing the firmware with esptool',
   },
   docs: {
     index: 'Documentation index',
