@@ -79,7 +79,7 @@ function onSectionToggle(section: string, event: Event) {
 const article_html = computed(() => {
   // Render the markdown of the selected article(improve first contentful paint compared to rendering all the markdown at startup)
   const doc = find_article(current_locale.value) ?? find_article('en');
-  if (!doc) return;
+  if (!doc) return '';
   open_sections.set(doc.frontmatter.section, true); // Open the relative section of the article
 
   const html = marked.parse(doc.content.replace(/^---[\s\S]*?---\s*/, ''), { async: false }); // Remove frontmatter since marked doesn't parse it

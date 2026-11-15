@@ -10,8 +10,9 @@ import {
   LinkSlashIcon,
 } from '@heroicons/vue/24/outline';
 import { ESPLoader, type IEspLoaderTerminal, Transport } from 'esptool-js';
-import { chipLabel, type FirmwareManifest, loadManifest, loadPart } from '@/lib/firmware';
+import { chipLabel, loadManifest, loadPart } from '@/lib/firmware';
 import { links } from '@/site';
+import type { FirmwareManifest } from '../../env';
 
 const { t, locale } = useI18n();
 
