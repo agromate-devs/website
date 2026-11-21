@@ -51,7 +51,7 @@ The topics and payloads are listed in the server and firmware sources (`src/app/
 | ----------------------------------------------------------------- | ------------------ | ---------------------------------------- |
 | [agrosmart](https://github.com/agromate-devs/agrosmart)           | Agrosmart firmware | C, ESP‑IDF, FreeRTOS                     |
 | [server](https://github.com/agromate-devs/server)                 | Backend            | TypeScript, Fastify 5, Prisma 7 (SQLite) |
-| [new_mobile_app](https://github.com/agromate-devs/new_mobile_app) | Mobile app         | Dart, Flutter, MobX                      |
+| [mobile_app](https://github.com/agromate-devs/mobile_app) | Mobile app         | Dart, Flutter, MobX                      |
 | [camera](https://github.com/agromate-devs/camera)                 | Webcam broadcaster | Python, aiortc, aiomqtt                  |
 | [website](https://github.com/agromate-devs/website)               | Site and docs      | TypeScript, Vue 3, Vite, Tailwind CSS    |
 
@@ -181,13 +181,13 @@ npm run dev              # http://localhost:3000, Swagger UI on /docs
 - There is no test suite yet: try the endpoints you touched from the Swagger UI and describe the requests in the pull
   request.
 
-## Mobile app — `new_mobile_app`
+## Mobile app — `mobile_app`
 
 A Flutter app for Android and iOS. Follow [Building the app](/docs?article=building) to set up the `.env` file,
 Firebase (or build without it) and the MobX code generation.
 
 ```text
-new_mobile_app/
+mobile_app/
 ├── lib/
 │   ├── main.dart
 │   ├── views/

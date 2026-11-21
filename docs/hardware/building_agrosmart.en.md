@@ -12,6 +12,15 @@ draft: false
 This guide covers building an Agrosmart from scratch: the parts you need, how to wire them to the
 ESP32, which GPIOs the firmware uses by default, and how to change them if your board is different.
 
+Agromate does not impose a specific greenhouse: the parts below are the reference setup the firmware
+is tested with, not a fixed bill of materials. The physical structure is entirely up to you.
+
+> [!TIP]
+> There is **no official enclosure or STL file** at the moment. A shelf, a wooden box, a recycled
+> terrarium or a 3D‑printed case of your own design all work: place the sensors, the pump and the LED
+> strip wherever your build needs them. If you design an enclosure you want to share, see
+> [Contributing](/docs?article=contributing_code).
+
 > [!NOTE]
 > The reference board is an **ESP32‑C5** devkit: it is the target built by the firmware CI
 > and the one the committed `sdkconfig` is configured for. ESP32 and

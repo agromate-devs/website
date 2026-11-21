@@ -25,7 +25,7 @@ const architecture = [
     name: 'App mobile',
     labelKey: 'architecture.mobileApp',
     tag: 'Flutter · MobX',
-    href: 'https://github.com/agromate-devs/new_mobile_app',
+    href: 'https://github.com/agromate-devs/mobile_app',
     protocol: null,
   },
 ] as const;

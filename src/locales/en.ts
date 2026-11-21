@@ -1,6 +1,6 @@
 export default {
   meta: {
-    homeTitle: 'Agromate — The smart greenhouse on ESP32',
+    homeTitle: 'Agromate — The firmware for smart greenhouse on ESP32',
     notFoundTitle: 'Page not found · Agromate',
     flasherTitle: 'Firmware flasher · Agromate',
     docTitle: '{title} · Agromate Documentation',
@@ -18,7 +18,7 @@ export default {
   hero: {
     title: 'The smart greenhouse that takes care {highlight}.',
     highlight: 'of your plants',
-    text: 'Agromate monitors your plant’s vital parameters, automatically manages watering, lighting and humidity, and keeps you updated in real time on your smartphone.',
+    text: 'Agromate is an open source project that monitors your plant’s vital parameters, automatically manages watering, lighting and humidity, and keeps you updated in real time on your smartphone.',
     discover: 'Discover the features',
     docs: 'Documentation',
   },
@@ -28,10 +28,29 @@ export default {
     airHumidity: 'Air humidity',
     soil: 'Soil',
   },
+  build: {
+    eyebrow: 'Build it your way',
+    title: 'Not a product in a box, but the brain of your greenhouse.',
+    text: 'Agromate gives you the firmware, the app and the server: the greenhouse is yours to design. Every part is meant to be customized and extended, so it fits the space, the plants and the hardware you have.',
+    enclosure: {
+      title: 'Any enclosure you like',
+      text: 'There is no official enclosure or STL file at the moment. A shelf, a wooden box, a recycled terrarium or a 3D‑printed case of your own design: Agromate adapts to the greenhouse you build.',
+    },
+    parts: {
+      title: 'Your parts, your pins',
+      text: 'Choose the ESP32 chip, the sensors, the LED strip and the GPIOs. Everything is configurable at build time: the default setup is just a starting point.',
+    },
+    open: {
+      title: 'Open and extensible',
+      text: 'Firmware, app and server are open source. Add new sensors, change how the greenhouse behaves, fork the project and share your improvements with the community.',
+    },
+    guide: 'Build your Agrosmart',
+    customize: 'Customize the firmware',
+  },
   features: {
     eyebrow: 'Features',
-    title: 'Everything a plant needs, in a single greenhouse.',
-    text: 'Agrosmart combines sensors and actuators into a system that works on its own, following the ideal configuration for your plant.',
+    title: 'Everything a plant needs, in the greenhouse you build.',
+    text: 'The Agrosmart firmware combines sensors and actuators into a system that works on its own, following the ideal configuration for your plant.',
     vitals: {
       title: 'Vital parameters under control',
       text: 'Air temperature and humidity measured by the DHT sensor, soil moisture read by a probe.',
@@ -92,7 +111,7 @@ export default {
   },
   footer: {
     tagline:
-      'An open source smart greenhouse based on ESP32 to grow your plants with the right parameters, always.',
+      'Open source firmware, app and server to build your own smart greenhouse on ESP32 and grow your plants with the right parameters, always.',
     project: 'Project',
     source: 'Source code',
     firmware: 'Agrosmart firmware',
@@ -107,8 +126,7 @@ export default {
     unsupported:
       'Your browser does not support Web Serial. Use Chrome, Edge or Opera on desktop, or flash the firmware manually with esptool.',
     firmwareTitle: 'Standard firmware',
-    firmwareText:
-      'The latest official release, built with every option at its default value.',
+    firmwareText: 'The latest official release, built with every option at its default value.',
     loading: 'Loading firmware information…',
     noFirmware: 'No firmware is available right now. You can download it from the',
     releases: 'GitHub releases',

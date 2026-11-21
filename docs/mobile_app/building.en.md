@@ -31,8 +31,8 @@ You need a running server first: if you don't have one yet, follow [First steps]
 ## Getting the source code
 
 ```bash
-git clone https://github.com/agromate-devs/new_mobile_app.git
-cd new_mobile_app
+git clone https://github.com/agromate-devs/mobile_app.git
+cd mobile_app
 flutter pub get
 ```
 

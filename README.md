@@ -13,7 +13,7 @@ Built with **Vue 3**, **Vite**, **TypeScript** and **Tailwind CSS v4**.
 | ----------------------------------------------------------------- | ------------------ |
 | [agrosmart](https://github.com/agromate-devs/agrosmart)           | Agrosmart firmware |
 | [server](https://github.com/agromate-devs/server)                 | Backend            |
-| [new_mobile_app](https://github.com/agromate-devs/new_mobile_app) | Mobile app         |
+| [mobile_app](https://github.com/agromate-devs/mobile_app) | Mobile app         |
 | [camera](https://github.com/agromate-devs/camera)                 | Webcam broadcaster |
 | **website** (this repository)                                     | Site and docs      |
 

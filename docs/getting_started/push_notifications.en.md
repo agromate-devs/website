@@ -134,7 +134,7 @@ project and build it.
 ### Requirements
 
 - The [Flutter SDK](https://docs.flutter.dev/get-started/install) and the
-  [app source code](https://github.com/agromate-devs/new_mobile_app)
+  [app source code](https://github.com/agromate-devs/mobile_app)
 - The [Firebase CLI](https://firebase.google.com/docs/cli), logged in with the account that owns the project:
 
   ```bash

@@ -8,6 +8,7 @@ import {
   DevicePhoneMobileIcon,
 } from '@heroicons/vue/24/outline';
 import ArchitectureSection from '@/components/ArchitectureSection.vue';
+import BuildYourOwnSection from '@/components/BuildYourOwnSection.vue';
 import FeaturesSection from '@/components/FeaturesSection.vue';
 import GreenhouseIllustration from '@/components/GreenhouseIllustration.vue';
 import ProjectCard from '@/components/ProjectCard.vue';
@@ -31,7 +32,7 @@ const projects = computed(() => [
     icon: DevicePhoneMobileIcon,
     title: t('projects.app.title'),
     description: t('projects.app.description'),
-    repo: 'agromate-devs/new_mobile_app',
+    repo: 'agromate-devs/mobile_app',
     tone: 'soil' as const,
   },
 ]);
@@ -84,6 +85,26 @@ const projects = computed(() => [
       </div>
 
       <GreenhouseIllustration />
+    </div>
+  </section>
+
+  <!-- BUILD YOUR OWN -->
+  <section id="build" class="scroll-mt-16 border-y border-leaf-900/10 bg-leaf-50 py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p class="text-sm font-semibold tracking-widest text-leaf-600 uppercase">
+          {{ t('build.eyebrow') }}
+        </p>
+        <h2
+          class="mt-3 font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl"
+        >
+          {{ t('build.title') }}
+        </h2>
+        <p class="mt-5 text-lg text-leaf-900/70">
+          {{ t('build.text') }}
+        </p>
+      </div>
+      <BuildYourOwnSection />
     </div>
   </section>
 
